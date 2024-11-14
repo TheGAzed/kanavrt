@@ -1,0 +1,17 @@
+{
+  "name": "kanavrt",
+  "short_name": "kanavrt",
+  "id": "./",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#E6E6E6",
+  "theme_color": "#3A3399",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "32x32"
+    }
+  ]
+}

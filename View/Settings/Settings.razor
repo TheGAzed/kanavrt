@@ -1,0 +1,39 @@
+﻿@page "/settings"
+@inherits SideNav
+
+<PageTitle>Settings</PageTitle>
+
+@code {
+    protected Dictionary<SettingsNav, String> Navigation = new() {
+        { SettingsNav.GRID, "/img/svg/mode/gear-fill.svg"     },
+        { SettingsNav.FONTS, "/img/svg/mode/keyboard-fill.svg" },
+    };
+}
+
+<nav style="width: @(Toggled ? "2.5rem" : "12.5rem")" class="@(Toggled ? "side-nav" : "side-nav-toggled")">
+    <ul @ondblclick="ToggleSideMenu">
+        @foreach (var nav in Navigation) {
+            <li>
+                <NavLink class="@(CurrentMode.Equals(nav.Key) ? "side-link side-link-active" : "side-link")" @onclick="() => ChangeSettings(nav.Key)">
+                    <img src="@nav.Value" type="img/svg" alt="Alternate Text" />
+
+                    @if (!Toggled) {
+                        <span>@nav.Key.ToString()</span>
+                    }
+                </NavLink>
+            </li>
+        }
+    </ul>
+</nav>
+
+    @switch (CurrentSettings) {
+        case SettingsNav.FONTS: {
+            <Grid></Grid>
+            break;
+        }
+
+        case SettingsNav.GRID : default: {
+            <Fonts></Fonts>
+            break;
+        }
+    }

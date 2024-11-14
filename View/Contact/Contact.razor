@@ -1,0 +1,40 @@
+﻿@page "/contact"
+@inherits SideNav
+
+<PageTitle>Settings</PageTitle>
+
+@code {
+    protected Dictionary<ContactNav, String> Navigation = new() {
+        { ContactNav.INFORMATION, "/img/svg/mode/gear-fill.svg"     },
+        { ContactNav.FORM, "/img/svg/mode/keyboard-fill.svg" },
+    };
+}
+
+<nav style="width: @(Toggled ? "2.5rem" : "12.5rem")" class="@(Toggled ? "side-nav" : "side-nav-toggled")">
+    <ul @ondblclick="ToggleSideMenu">
+        @foreach (var nav in Navigation) {
+            <li>
+                <NavLink class="@(CurrentMode.Equals(nav.Key) ? "side-link side-link-active" : "side-link")" @onclick="() => ChangeContact(nav.Key)">
+                    <img src="@nav.Value" type="img/svg" alt="Alternate Text" />
+
+                    @if (!Toggled) {
+                        <span>@nav.Key.ToString()</span>
+                    }
+                </NavLink>
+            </li>
+        }
+    </ul>
+</nav>
+
+    @switch (CurrentContact) {
+        case ContactNav.INFORMATION : {
+            <Information></Information>
+            break;
+        }
+
+        case ContactNav.FORM :
+        default: {
+            <Form></Form>
+            break;
+        }
+    }

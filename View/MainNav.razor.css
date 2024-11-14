@@ -1,0 +1,51 @@
+﻿header {
+    display: flex;
+    flex-direction: row;
+    flex: 15rem auto;
+    height: 2.5rem;
+    background-color: var(--purple);
+}
+
+    header > nav {
+        height: inherit;
+    }
+
+        header > nav > ul {
+            display: flex;
+            list-style: none;
+            padding: unset;
+            margin: unset;
+            height: inherit;
+            flex-direction: row;
+        }
+
+            header > nav > ul > li {
+                font-size: 0.75rem;
+                height: inherit;
+            }
+
+    header > a {
+        width: 10rem;
+        background-color: var(--dark-purple);
+        color: var(--white);
+    }
+
+        header > a > h1 {
+            display: inline-block;
+            padding-left: 0.75rem;
+            font-size: 1rem;
+            margin: unset;
+            text-decoration: none;
+            height: inherit;
+            line-height: 2.5rem;
+        }
+
+    header > img {
+        padding: 0.75rem;
+        background-color: var(--black);
+    }
+
+main {
+    display: flex;
+    height: calc(100vh - 2.5rem);
+}

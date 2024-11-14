@@ -1,0 +1,34 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager nm
+
+<header>
+    <img src="/img/svg/logo-main.svg" alt="Alternate Text" fill="#E6E6E6" />
+
+    <a href="">
+        <h1>KANAVRT</h1>
+    </a>
+
+    <nav id="primary-navigation">
+        <ul>
+            <li>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="modes">MODES</NavLink>
+            </li>
+
+            <li>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="settings">SETTINGS</NavLink>
+            </li>
+
+            <li>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="statistics">STATISTICS</NavLink>
+            </li>
+
+            <li>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="contact">CONTACT</NavLink>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    @Body
+</main>
