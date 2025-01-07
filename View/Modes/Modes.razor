@@ -1,39 +1,7 @@
 ﻿@page "/modes"
-@inherits SideNav
+@inject NavigationManager nm
 
-<PageTitle>Modes</PageTitle>
-
-@code {
-    protected Dictionary<ModesNav, String> Navigation = new() {
-        { ModesNav.EITHEROR, "/img/svg/mode/gear-fill.svg"     },
-        { ModesNav.KEYBOARD, "/img/svg/mode/keyboard-fill.svg" },
-    };
+@{
+    nm.NavigateTo("modes/eitheror");
 }
 
-<nav style="width: @(Toggled ? "2.5rem" : "12.5rem")" class="@(Toggled ? "side-nav" : "side-nav-toggled")">
-    <ul @ondblclick="ToggleSideMenu">
-        @foreach (var nav in Navigation) {
-            <li>
-                <NavLink class="@(CurrentMode.Equals(nav.Key) ? "side-link side-link-active" : "side-link")" @onclick="() => ChangeMode(nav.Key)">
-                    <img src="@nav.Value" type="img/svg" alt="Alternate Text" />
-
-                    @if (!Toggled) {
-                        <span>@nav.Key.ToString()</span>
-                    }
-                </NavLink>
-            </li>
-        }
-    </ul>
-</nav>
-
-@switch (CurrentMode) {
-    case ModesNav.KEYBOARD: {
-        <Keyboard></Keyboard>
-        break;
-    }
-
-    case ModesNav.EITHEROR : default : {
-        <Eitheror></Eitheror>
-        break;
-    }
-}

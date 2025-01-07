@@ -18,6 +18,19 @@ h1:focus {
     outline: none;
 }
 
+h2, h3 {
+    width: inherit;
+    height: inherit;
+    padding: unset;
+    margin: unset;
+    font-size: 0.75rem;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+}
+
 a, .btn-link {
     display: inline-block;
     text-decoration: none;
@@ -25,9 +38,10 @@ a, .btn-link {
 }
 
     a.main-link {
-        padding: 0 2rem 0 2rem;
         line-height: 2.5rem;
         color: var(--white);
+        width: inherit;
+        padding: unset;
     }
 
     a.side-link {
@@ -38,8 +52,13 @@ a, .btn-link {
         color: var(--black);
     }
 
-        a.side-link > li {
+        a.side-link > h3 {
+            width: inherit;
+            height: inherit;
             padding-left: 0.75rem;
+            font-size: 0.75rem;
+            margin: unset;
+            font-weight: normal;
         }
 
         a.side-link > img {
@@ -51,6 +70,8 @@ a, .btn-link {
     a.main-link-active {
         background-color: var(--gray);
         color: var(--black);
+        width: inherit;
+        padding: unset;
     }
 
     a.side-link {
@@ -59,10 +80,6 @@ a, .btn-link {
 
     a.side-link-active {
         background-color: var(--white);
-    }
-
-    a:hover {
-        text-decoration: underline;
     }
 
 main > nav {

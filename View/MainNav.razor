@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager nm
 
 <header>
     <img src="/img/svg/logo-main.svg" alt="Alternate Text" fill="#E6E6E6" />
@@ -11,19 +10,27 @@
     <nav id="primary-navigation">
         <ul>
             <li>
-                <NavLink ActiveClass="main-link-active" class="main-link" href="modes">MODES</NavLink>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="/modes">
+                    <h2>MODES</h2>
+                </NavLink>
             </li>
 
             <li>
-                <NavLink ActiveClass="main-link-active" class="main-link" href="settings">SETTINGS</NavLink>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="/settings">
+                    <h2>SETTINGS</h2>
+                </NavLink>
             </li>
 
             <li>
-                <NavLink ActiveClass="main-link-active" class="main-link" href="statistics">STATISTICS</NavLink>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="/statistics">
+                    <h2>STATISTICS</h2>
+                </NavLink>
             </li>
 
             <li>
-                <NavLink ActiveClass="main-link-active" class="main-link" href="contact">CONTACT</NavLink>
+                <NavLink ActiveClass="main-link-active" class="main-link" href="/contact">
+                    <h2>CONTACT</h2>
+                </NavLink>
             </li>
         </ul>
     </nav>
