@@ -27,7 +27,9 @@
     }
 
 @keyframes downwards {
-    to { transform: translateY(1rem); }
+    to {
+        transform: translateY(1rem);
+    }
 }
 
 @keyframes upwards {
