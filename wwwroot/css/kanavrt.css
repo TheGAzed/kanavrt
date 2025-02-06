@@ -5,6 +5,8 @@
     --light-purple: #B6B2E5;
     --white: #E6E6E6;
     --gray: #BFBFBF;
+    --red: #953131;
+    --green: #31955A;
 }
 
 body {
@@ -20,6 +22,10 @@ html, body {
 
 h1:focus {
     outline: none;
+}
+
+h3 {
+    font-size: 1.5rem;
 }
 
 a, .btn-link {
@@ -121,5 +127,23 @@ section {
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-height: 850px) {
+    section {
+        height: 30rem;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    section {
+        height: 25rem;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    section {
+        height: 20rem;
     }
 }

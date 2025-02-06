@@ -1,39 +1,147 @@
 ﻿@page "/modes/eitheror"
+@using kanavrt.Controller.Modes
+@using kanavrt.Model
+
+@inject KanaModel model
 
 <PageTitle>Either-or mode</PageTitle>
 
 <ModesSideNav></ModesSideNav>
 
+@code {
+    public EitherOrModeController controller;
+    bool isChecking = false;
+    string ClickedLatin = "";
+    int index = new Random().Next(0, 2);
+
+    protected override void OnInitialized() {
+        controller = new EitherOrModeController(model);
+    }
+
+    async Task checkClick(string syllable) {
+        if (isChecking) return;
+        else isChecking = true;
+
+        ClickedLatin = model.lookup[syllable].Latin[0];
+
+        await Task.Delay(1500);
+
+        controller.Update(syllable);
+        index = new Random().Next(0, 2);
+
+        isChecking = false;
+    }
+}
+
+@{
+	string[] guesses = { controller.CorrectSyllable, controller.WrongSyllable };
+	string CurrentLatin = model.lookup[controller.CorrectSyllable].Latin[0];
+	for (int i = 1; i < model.lookup[controller.CorrectSyllable].Latin.Length; i++) {
+		CurrentLatin += ", " + model.lookup[controller.CorrectSyllable].Latin[i];
+	}
+
+	string latinGuessState() {
+		if (isChecking) {
+			return controller.IsCorrect(ClickedLatin) ? "latin-guess-correct" : "latin-guess-wrong";
+		}
+
+		return "";
+	}
+
+	string guessButtonState(string syllable) {
+		string latin = model.lookup[syllable].Latin[0];
+		if (isChecking) {
+			return controller.IsCorrect(latin) ? "guess-button-correct" : "guess-button-wrong";
+		}
+
+		return "";
+	}
+}
+
 <article>
-    <h2>EITHER OR MODE</h2>
+	<h3>EITHER OR MODE</h3>
 
-    <div class="info-bar">
-        <span class="progress-bar">
-            <span class="left-progress">
+	@{
+		int rightBefore = controller.CorrectGuesses;
+		int leftBefore  = controller.WrongGuesses;
 
-            </span>
-        </span>
+		int rightAfter = controller.CorrectGuesses;
+		int leftAfter  = controller.WrongGuesses;
 
-        <button class="bar-button">
-            <img src="img/svg/modes/arrow-clockwise.svg" alt="next character" />
-        </button>
+		double correctBefore = 0;
+		double wrongBefore = 0;
 
-        <span class="progress-bar">
-            <span class="right-progress">
+		double sum = rightBefore + leftBefore;
+		if (sum > 0) {
+			correctBefore = rightBefore / sum;
+			wrongBefore = leftBefore / sum;
+		}
 
-            </span>
-        </span>
-    </div>
+		double correctAfter = correctBefore;
+		double wrongAfter = wrongBefore;
 
-    <section>
-        <button class="guess-button">
-            あ
-        </button>
+		if (isChecking) {
+			if (controller.IsCorrect(ClickedLatin)) rightAfter++;
+			else leftAfter++;
 
-        <p class="latin-guess">HI</p>
+			correctAfter = rightAfter / (sum + 1);
+			wrongAfter = leftAfter / (sum + 1);
+		}
+	}
 
-        <button class="guess-button">
-            え
-        </button>
-    </section>
+	<style>
+		@@keyframes slide-wrong {
+			from {
+				width: @(wrongBefore * 100)%;
+			}
+
+			to {
+				width: @(wrongAfter * 100)%;
+			}
+		}
+
+		@@keyframes slide-correct {
+			from {
+				width: @(correctBefore * 100)%;
+			}
+
+			to {
+				width: @(correctAfter * 100)%;
+			}
+		}
+
+		div.left-progress{
+			animation: slide-wrong 1500ms forwards;
+		}
+
+		div.right-progress{
+			animation: slide-correct 1500ms forwards;
+		}
+	</style>
+
+	<div class="info-bar">
+		<span class="progress-bar">
+			<div class="left-progress" style="width: @(wrongBefore * 100)%;"></div>
+		</span>
+
+		<button class="bar-button" @onclick="() => { controller.Reset(); }">
+			<img src="img/svg/modes/arrow-clockwise.svg" alt="next character" />
+		</button>
+
+		<span class="progress-bar">
+			<div class="right-progress" style="width: @(correctBefore * 100)%;"></div>
+		</span>
+	</div>
+
+	<section>
+		<button class="guess-button @guessButtonState(@guesses[index])" @onclick="() => checkClick(guesses[index])">
+			@guesses[index]
+		</button>
+
+		<p class="latin-guess @latinGuessState()">@CurrentLatin</p>
+
+		<button class="guess-button @guessButtonState(@guesses[1 - index])" @onclick="() => checkClick(guesses[1 - index])">
+			@guesses[1 - index]
+		</button>
+	</section>
 </article>

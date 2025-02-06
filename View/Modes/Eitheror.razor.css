@@ -1,30 +1,20 @@
-﻿button.guess-button {
+﻿button.guess-button, button.guess-button-active {
     grid-column: 1 / -1;
     grid-row: span 2;
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--gray);
+    color: var(--black);
     font-size: 8rem;
     border: unset;
     cursor: pointer;
 }
 
-    button.guess-button:first-child:active {
-        background-color: var(--gray);
-        color: var(--black);
-        border-top: solid 0.5rem var(--black);
-        border-left: solid 0.5rem var(--black);
-        border-right: solid 0.5rem var(--black);
-        border-bottom: solid 0.5rem var(--dark-purple);
-    }
+button.guess-button-correct {
+    background-color: var(--purple);
+    color: var(--white);
+}
 
-    button.guess-button:last-child:active {
-        background-color: var(--gray);
-        color: var(--black);
-        border-bottom: solid 0.5rem var(--black);
-        border-left: solid 0.5rem var(--black);
-        border-right: solid 0.5rem var(--black);
-        border-top: solid 0.5rem var(--dark-purple);
-    }
+button.guess-button-wrong {
+}
 
 @keyframes downwards {
     to { transform: translateY(1rem); }
@@ -60,7 +50,7 @@ section > button.guess-button:last-child:hover {
     animation-timing-function: ease-in-out;
 }
 
-p.latin-guess {
+p.latin-guess, p.latin-guess-correct, p.latin-guess-wrong {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,8 +59,16 @@ p.latin-guess {
     margin: unset;
     padding: unset;
     grid-column: 1 / -1;
-    background-color: var(--dark-purple);
+    background-color: var(--black);
     color: var(--white);
+}
+
+p.latin-guess-correct {
+    background-color: var(--green);
+}
+
+p.latin-guess-wrong {
+    background-color: var(--red);
 }
 
 div.info-bar {
@@ -100,13 +98,47 @@ button.bar-button {
 
 span.progress-bar {
     flex-grow: 1;
+    display: flex;
     background-color: var(--gray);
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
 }
 
+div.left-progress {
+    background-color: var(--red);
+    height: 100%;
+    margin-left: auto;
+}
+
+div.right-progress {
+    background-color: var(--green);
+    height: 100%;
+}
+
 @media screen and (max-width: 650px) {
     div.info-bar {
         width: 22.5rem;
+    }
+}
+
+@media screen and (max-height: 950px) {
+    h3 {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 850px) {
+    button.guess-button, button.guess-button-active {
+        font-size: 6rem;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    button.guess-button, button.guess-button-active {
+        font-size: 4rem;
+    }
+
+    p.latin-guess {
+        font-size: 1.5rem;
     }
 }
