@@ -104,15 +104,19 @@ span.progress-bar {
     margin-top: 0.2rem;
 }
 
+div.left-progress, div.right-progress {
+    height: 100%;
+    width: 0%;
+    transition: width 1500ms ease-in-out;
+}
+
 div.left-progress {
     background-color: var(--red);
-    height: 100%;
     margin-left: auto;
 }
 
 div.right-progress {
     background-color: var(--green);
-    height: 100%;
 }
 
 @media screen and (max-width: 650px) {
