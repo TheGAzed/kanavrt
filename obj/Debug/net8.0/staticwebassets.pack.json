@@ -1,0 +1,165 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\obj\\Debug\\net8.0\\compressed\\fiijifk6br.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\obj\\Debug\\net8.0\\scopedcss\\bundle\\kanavrt.styles.css",
+      "PackagePath": "staticwebassets\\kanavrt.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\obj\\Debug\\net8.0\\service-worker-assets.js",
+      "PackagePath": "staticwebassets\\service-worker-assets.js"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\obj\\Debug\\net8.0\\service-worker\\service-worker.published.js",
+      "PackagePath": "staticwebassets\\service-worker.js"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\css\\kanavrt.css",
+      "PackagePath": "staticwebassets\\css\\kanavrt.css"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\css\\mainnav.css",
+      "PackagePath": "staticwebassets\\css\\mainnav.css"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\css\\sidenav.css",
+      "PackagePath": "staticwebassets\\css\\sidenav.css"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\contact\\form.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\contact\\form.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\contact\\form_active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\contact\\form_active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\contact\\information.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\contact\\information.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\contact\\information_active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\contact\\information_active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\logo-main.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\logo-main.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\contact-active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\contact-active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\contact-default.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\contact-default.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\home-active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\home-active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\home-default.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\home-default.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\modes-active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\modes-active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\modes-default.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\modes-default.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\settings-active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\settings-active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\settings-default.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\settings-default.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\statistics-active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\statistics-active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\mainnav\\statistics-default.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\mainnav\\statistics-default.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\modes\\arrow-clockwise.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\modes\\arrow-clockwise.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\modes\\desktop.ini",
+      "PackagePath": "staticwebassets\\img\\svg\\modes\\desktop.ini"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\modes\\eitheror.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\modes\\eitheror.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\modes\\eitheror_active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\modes\\eitheror_active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\modes\\keyboard.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\modes\\keyboard.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\modes\\keyboard_active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\modes\\keyboard_active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\settings\\fonts.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\settings\\fonts.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\settings\\fonts_active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\settings\\fonts_active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\settings\\grid.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\settings\\grid.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\img\\svg\\settings\\grid_active.svg",
+      "PackagePath": "staticwebassets\\img\\svg\\settings\\grid_active.svg"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\gamep\\source\\repos\\TheGAzed\\kanavrt\\wwwroot\\manifest.webmanifest",
+      "PackagePath": "staticwebassets\\manifest.webmanifest"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.kanavrt.props",
+      "PackagePath": "build\\kanavrt.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.kanavrt.props",
+      "PackagePath": "buildMultiTargeting\\kanavrt.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.kanavrt.props",
+      "PackagePath": "buildTransitive\\kanavrt.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.kanavrt.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

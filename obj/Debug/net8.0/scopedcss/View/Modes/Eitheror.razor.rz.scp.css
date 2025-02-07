@@ -1,0 +1,148 @@
+button.guess-button[b-mm5w1uu8b6], button.guess-button-active[b-mm5w1uu8b6] {
+    grid-column: 1 / -1;
+    grid-row: span 2;
+    background-color: var(--gray);
+    color: var(--black);
+    font-size: 8rem;
+    border: unset;
+    cursor: pointer;
+}
+
+button.guess-button-correct[b-mm5w1uu8b6] {
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+button.guess-button-wrong[b-mm5w1uu8b6] {
+}
+
+@keyframes downwards-b-mm5w1uu8b6 {
+    to { transform: translateY(1rem); }
+}
+
+@keyframes upwards-b-mm5w1uu8b6 {
+    to {
+        transform: translateY(-1rem);
+    }
+}
+
+section > button.guess-button:first-child[b-mm5w1uu8b6] {
+    border-radius: 1rem 1rem 0 0;
+}
+
+section > button.guess-button:last-child[b-mm5w1uu8b6] {
+    border-radius: 0 0 1rem 1rem;
+}
+
+section > button.guess-button:first-child:hover[b-mm5w1uu8b6] {
+    animation-name: downwards-b-mm5w1uu8b6;
+    animation-duration: 200ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+section > button.guess-button:last-child:hover[b-mm5w1uu8b6] {
+    animation-name: upwards-b-mm5w1uu8b6;
+    animation-duration: 200ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+p.latin-guess[b-mm5w1uu8b6], p.latin-guess-correct[b-mm5w1uu8b6], p.latin-guess-wrong[b-mm5w1uu8b6] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    vertical-align: middle;
+    margin: unset;
+    padding: unset;
+    grid-column: 1 / -1;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+p.latin-guess-correct[b-mm5w1uu8b6] {
+    background-color: var(--green);
+}
+
+p.latin-guess-wrong[b-mm5w1uu8b6] {
+    background-color: var(--red);
+}
+
+div.info-bar[b-mm5w1uu8b6] {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 35rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+button.bar-button[b-mm5w1uu8b6] {
+    width: 2.5rem;
+    background-color: var(--white);
+    border: solid 0.2rem var(--black);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    button.bar-button:hover[b-mm5w1uu8b6] {
+        cursor: pointer;
+        transform: scale(95%);
+    }
+
+span.progress-bar[b-mm5w1uu8b6] {
+    flex-grow: 1;
+    display: flex;
+    background-color: var(--gray);
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+div.left-progress[b-mm5w1uu8b6], div.right-progress[b-mm5w1uu8b6] {
+    height: 100%;
+    width: 0%;
+    transition: width 1500ms ease-in-out;
+}
+
+div.left-progress[b-mm5w1uu8b6] {
+    background-color: var(--red);
+    margin-left: auto;
+}
+
+div.right-progress[b-mm5w1uu8b6] {
+    background-color: var(--green);
+}
+
+@media screen and (max-width: 650px) {
+    div.info-bar[b-mm5w1uu8b6] {
+        width: 22.5rem;
+    }
+}
+
+@media screen and (max-height: 950px) {
+    h3[b-mm5w1uu8b6] {
+        display: none;
+    }
+}
+
+@media screen and (max-height: 850px) {
+    button.guess-button[b-mm5w1uu8b6], button.guess-button-active[b-mm5w1uu8b6] {
+        font-size: 6rem;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    button.guess-button[b-mm5w1uu8b6], button.guess-button-active[b-mm5w1uu8b6] {
+        font-size: 4rem;
+    }
+
+    p.latin-guess[b-mm5w1uu8b6] {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,113 @@
+﻿@page "/modes/eitheror"
+@using kanavrt.Controller.Modes
+@using kanavrt.Model
+
+@inject KanaModel model
+
+<PageTitle>Either-or mode</PageTitle>
+
+<ModesSideNav></ModesSideNav>
+
+@code {
+	public EitherOrModeController controller;
+	bool isChecking = false;
+	string ClickedLatin = "";
+	int index = new Random().Next(0, 2);
+
+	protected override void OnInitialized() {
+		controller = new EitherOrModeController(model);
+	}
+
+	async Task checkClick(string syllable) {
+		if (isChecking) return;
+		else isChecking = true;
+
+		ClickedLatin = model.lookup[syllable].Latin[0];
+
+		await Task.Delay(1500);
+
+		controller.Update(syllable);
+		index = new Random().Next(0, 2);
+
+		isChecking = false;
+	}
+}
+
+@{
+	string[] guesses = { controller.CorrectSyllable, controller.WrongSyllable };
+	string CurrentLatin = model.lookup[controller.CorrectSyllable].Latin[0];
+	for (int i = 1; i < model.lookup[controller.CorrectSyllable].Latin.Length; i++) {
+		CurrentLatin += ", " + model.lookup[controller.CorrectSyllable].Latin[i];
+	}
+
+	string latinGuessState() {
+		if (isChecking) {
+			return controller.IsCorrect(ClickedLatin) ? "latin-guess-correct" : "latin-guess-wrong";
+		}
+
+		return "";
+	}
+
+	string guessButtonState(string syllable) {
+		string latin = model.lookup[syllable].Latin[0];
+		if (isChecking) {
+			return controller.IsCorrect(latin) ? "guess-button-correct" : "guess-button-wrong";
+		}
+
+		return "";
+	}
+}
+
+<article>
+	<h3>EITHER OR MODE</h3>
+
+	@code {
+		//double leftBar = 0;
+		//double rightBar = 0;
+	}
+
+	@{
+		double leftBar = 0;
+		double rightBar = 0;
+
+		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
+
+		if (isChecking) {
+			if (controller.IsCorrect(ClickedLatin)) correct++;
+			else wrong++;			
+		}
+
+		double sum = correct + wrong;
+		if (sum > 0) {
+			rightBar = (correct / sum) * 100;
+			leftBar = (wrong / sum) * 100;
+		}
+	}
+
+
+	<div class="info-bar">
+		<span class="progress-bar">
+			<div class="left-progress" style="width: @(leftBar)%;"></div>
+		</span>
+
+		<button class="bar-button" @onclick="() => controller.Reset()">
+			<img src="img/svg/modes/arrow-clockwise.svg" alt="next character" />
+		</button>
+
+		<span class="progress-bar">
+			<div class="right-progress" style="width: @(rightBar)%;"></div>
+		</span>
+	</div>
+
+	<section>
+		<button class="guess-button @guessButtonState(@guesses[index])" @onclick="() => checkClick(guesses[index])">
+			@guesses[index]
+		</button>
+
+		<p class="latin-guess @latinGuessState()">@CurrentLatin</p>
+
+		<button class="guess-button @guessButtonState(@guesses[1 - index])" @onclick="() => checkClick(guesses[1 - index])">
+			@guesses[1 - index]
+		</button>
+	</section>
+</article>
