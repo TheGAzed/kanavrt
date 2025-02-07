@@ -31,6 +31,12 @@
 
 		isChecking = false;
 	}
+
+	protected void resetEitheror() {
+		if (isChecking) return;
+
+		controller.Reset();
+	}
 }
 
 @{
@@ -61,11 +67,6 @@
 <article>
 	<h3>EITHER OR MODE</h3>
 
-	@code {
-		//double leftBar = 0;
-		//double rightBar = 0;
-	}
-
 	@{
 		double leftBar = 0;
 		double rightBar = 0;
@@ -90,7 +91,7 @@
 			<div class="left-progress" style="width: @(leftBar)%;"></div>
 		</span>
 
-		<button class="bar-button" @onclick="() => controller.Reset()">
+		<button class="bar-button" @onclick="resetEitheror">
 			<img src="img/svg/modes/arrow-clockwise.svg" alt="next character" />
 		</button>
 
