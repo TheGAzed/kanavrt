@@ -22,8 +22,13 @@ namespace kanavrt.Controller.Modes {
 			string partial = PartialGuess.ToString();
 
 			if (IsPartial(partial) == IsCorrect(partial)) {
-				if (IsCorrect(partial)) { Model.lookup[syllable].Corrects++; } 
-				else { Model.lookup[syllable].Wrongs++; }
+				if (IsCorrect(partial)) { 
+					Model.lookup[CorrectSyllable].Corrects++;
+					CorrectGuesses++;
+				} else { 
+					Model.lookup[CorrectSyllable].Wrongs++;
+					WrongGuesses++;
+				}
 
 				PartialGuess.Clear();
 				NextMove();

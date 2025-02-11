@@ -1,0 +1,51 @@
+﻿table#character-set-table {
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(13, 1fr);
+    gap: 0.1rem;
+}
+
+tr.character-line {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.1rem;
+}
+
+label.toggle-label {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+
+label.special-toggle-label {
+    background-color: var(--dark-gray);
+    color: var(--white);
+}
+
+input.special-toggle-input:checked + label.special-toggle-label {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+label.character-toggle-label {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+label.character-toggle-label-unset {
+    opacity: 50%;
+    cursor: default;
+}
+
+input.character-toggle-input:checked + label.character-toggle-label {
+    background-color: var(--green);
+    color: var(--white);
+}

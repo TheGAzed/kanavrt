@@ -1,0 +1,39 @@
+﻿@page "/settings/grid"
+
+@using kanavrt.Model
+@using kanavrt.View.Settings.Grid.Table
+
+@inject KanaModel model
+
+<PageTitle>Grid settings</PageTitle>
+
+<SettingsSideNavView></SettingsSideNavView>
+
+@code {
+	bool isDigraph = false;
+	bool isDiacritic = false;
+}
+
+<article>
+	<h4>KANA COUNT : @(model.characters.Count)</h4>
+	<section>
+		@if (!isDigraph && !isDiacritic) {
+			<MonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></MonographTableView>
+		} else if (!isDigraph && isDiacritic) {
+			<DiacriticMonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DiacriticMonographTableView>
+		} else if (isDigraph && !isDiacritic) {
+			<DigraphTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DigraphTableView>
+		} else if (isDigraph && isDiacritic) {
+
+		}
+
+		<div id="graph-type">
+			<InputRadioGroup @bind-Value="@isDigraph">
+				<InputRadio id="monograph-input" Value="false" class="graph-input" style="display: none;"/>
+				<label class="graph-label" id="monograph-label" for="monograph-input">MONOGRAPHS</label>
+				<InputRadio Value="true" id="digraph-input" class="graph-input" style="display: none;" />
+				<label class="graph-label" id="digraph-label" for="digraph-input">DIGRAPHS</label>
+			</InputRadioGroup>
+		</div>
+	</section>
+</article>

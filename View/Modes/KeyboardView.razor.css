@@ -1,0 +1,295 @@
+﻿p.japanese-character {
+	grid-column: 1 / -1;
+	grid-row: 1 / 4;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--light-gray);
+	color: var(--black);
+	border-radius: 1rem;
+	font-size: 8rem;
+}
+
+p.latin-guess {
+	grid-column: 2 / -1;
+	grid-row: 4 / -1;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--black);
+	color: var(--white);
+	border-radius: 1rem;
+	font-size: 8rem;
+}
+
+table.keyboard {
+	display: flex;
+	flex-direction: column;
+	grid-column: 1;
+	grid-row: 4 / -1;
+	gap: 0.25rem;
+	justify-content: space-between;
+}
+
+tr#diacritics, tr#graphs {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+}
+
+td#graph-input, td#diacritic-input {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: space-between;
+}
+
+	td#diacritic-input {
+		gap: 0.2rem;
+	}
+
+input#graph-toggle-button:checked + label#graph-toggle-button, input#diacritic-toggle-button:checked + label#diacritic-toggle-button {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+label#graph-toggle-button, label#diacritic-toggle-button {
+	display: inline-block;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	width: 100%;
+	background-color: var(--dark-gray);
+	border-radius: 0.25rem;
+	font-size: 0.75rem;
+	user-select: none;
+	cursor: pointer;
+	color: var(--white);
+}
+
+		label#graph-toggle-button-small {
+			display: none;
+		}
+
+		tr#monograph-characters, tr#digraph-characters {
+			display: flex;
+			justify-content: space-between;
+		}
+
+tr#non-diacritic-characters, tr#diacritic-characters {
+	display: flex;
+	height: 100%;
+	justify-content: space-between;
+	align-content: space-between;
+}
+
+button.roman-character {
+	cursor: pointer;
+	background-color: var(--white);
+	width: 2rem;
+	height: 2rem;
+	border: 0.125rem solid var(--black);
+	border-radius: 0.25rem;
+}
+
+button.roman-character-unset {
+	opacity: 25%;
+	cursor: default;
+}
+
+button.roman-character-empty {
+	opacity: 0;
+	cursor: default;
+}
+
+button.roman-character-partial, button.roman-character-wrong, button.roman-character-correct {
+	color: var(--white);
+	cursor: default;
+}
+
+button.roman-character-partial {
+	background-color: var(--yellow);
+	border-color: var(--yellow);
+}
+
+button.roman-character-wrong {
+	background-color: var(--red);
+	border-color: var(--red);
+}
+
+button.roman-character-correct {
+	background-color: var(--green);
+	border-color: var(--green);
+}
+
+div.info-bar {
+	display: flex;
+	gap: 0.5rem;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 35rem;
+	height: 2.5rem;
+	margin-bottom: 1rem;
+}
+
+input, bar-button, input.bar-toggle {
+	display: none;
+}
+
+label.bar-button {
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: var(--white);
+	outline: solid 0.2rem var(--black);
+	border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+label.bar-toggle {
+	width: 2.5rem;
+	height: 2.5rem;
+	background-color: var(--light-gray);
+	border: solid 0.2rem var(--light-gray);
+	border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	user-select: none;
+}
+
+input.bar-toggle:checked + label.bar-toggle {
+	background-color: var(--black);
+	border: solid 0.2rem var(--black);
+	color: var(--white);
+}
+
+	input.bar-toggle:checked + label.bar-toggle > img {
+		filter: invert(100%) sepia(1%) saturate(684%) hue-rotate(263deg) brightness(116%) contrast(80%);
+	}
+
+label.bar-button:hover {
+	transform: scale(95%);
+}
+
+input.bar-toggle:checked + label.bar-toggle > img#volume-off {
+	display: none;
+}
+
+input.bar-toggle:checked + label.bar-toggle > img#volume-on {
+	display: unset;
+}
+
+input.bar-toggle + label.bar-toggle > img#volume-on {
+	display: none;
+}
+
+input.bar-toggle + label.bar-toggle > img#volume-off {
+	display: unset;
+}
+
+span.progress-bar {
+	flex-grow: 1;
+	display: flex;
+	background-color: var(--light-gray);
+	margin-bottom: 0.2rem;
+	margin-top: 0.2rem;
+}
+
+div.left-progress, div.right-progress {
+	height: 100%;
+	width: 0%;
+	transition: width 1500ms ease-in-out;
+}
+
+div.left-progress {
+	background-color: var(--red);
+	margin-left: auto;
+}
+
+div.right-progress {
+	background-color: var(--green);
+}
+
+@media screen and (max-width: 650px) {
+	div.info-bar {
+		width: 22.5rem;
+	}
+
+	p.japanese-character {
+		grid-row: 1 / 3;
+	}
+
+	p.latin-guess {
+		grid-column: 1 / -1;
+		grid-row: 3;
+		font-size: 4em;
+	}
+
+	table.keyboard {
+		grid-column: 1 / -1;
+		grid-row: 4 / -1;
+	}
+
+	button.roman-character {
+		width: 3rem;
+		height: 3rem;
+		border-width: 0.18rem;
+		border-radius: 0.5rem;
+		font-size: 1rem;
+	}
+
+	tr#graphs, tr#diacritics {
+		flex-direction: row;
+		gap: 1rem;
+	}
+
+	tr#diacritics {
+		flex-wrap: nowrap;
+	}
+
+	td#graph-toggle {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	td#diacritic-toggle {
+		width: 3rem;
+	}
+
+	td#graph-input {
+		flex-grow: 1;
+	}
+
+	td#diacritic-input {
+		gap: 0.3rem;
+	}
+
+	label#graph-toggle-button {
+		width: 3rem;
+		height: 3rem;
+		line-height: 3rem;
+		font-size: 1rem;
+	}
+
+	label#diacritic-toggle-button {
+		width: 3rem;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1rem;
+	}
+}
+
+@media screen and (max-height: 950px) and (max-width: 650px) {
+	h4 {
+		display: none;
+	}
+}

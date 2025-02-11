@@ -12,7 +12,10 @@
 	}
 
 	public class KanaModel {
-		public HashSet<String> characters = new() {
+		public bool IsSoundOn { get; set; } = false;
+		public bool IsHepburnOn { get; set; } = false;
+
+		public HashSet<string> characters = [
 					"\u3042", "\u3044", "\u3046", "\u3048", "\u304a",
 					"\u304b", "\u304d", "\u304f", "\u3051", "\u3053",
 					"\u3055", "\u3057", "\u3059", "\u305b", "\u305d",
@@ -24,9 +27,9 @@
 					"\u3089", "\u308a", "\u308b", "\u308c", "\u308d",
 					"\u308f",                               "\u3092",
 			"\u3093",
-		};
+		];
 
-		public Dictionary<String, Kana> lookup = new() {
+		public Dictionary<string, Kana> lookup = new() {
 			// MONOGRAPHS
 			{ "\u3042", new( ["A"],  "[a]") }, { "\u3044", new([        "I"],   "[i]") }, { "\u3046", new([        "U"],   "[ɯ]") }, { "\u3048", new([      "E"],  "[e]") }, { "\u304a", new([      "O"],  "[o]") },
 			{ "\u304b", new(["KA"], "[ka]") }, { "\u304d", new([       "KI"],  "[ki]") }, { "\u304f", new([       "KU"],  "[kɯ]") }, { "\u3051", new([     "KE"], "[ke]") }, { "\u3053", new([     "KO"], "[ko]") },
@@ -41,7 +44,7 @@
 
 			{ "\u3093", new( ["N"], "[m n ɲ ŋ ɴ ɰ̃]") },
 
-			// DIOGRAPHS
+			// DIGRAPHS
 			//       ya                                               yu                                               yo
 			{ "\u304D\u3083", new([       "KYA"], "[kʲa]") }, {"\u304D\u3085", new([       "KYU"], "[kʲɯ]") }, {"\u304D\u3087", new([       "KYO"], "[kʲo]") }, // k
 			{ "\u3057\u3083", new(["SYA", "SHA"],  "[ɕa]") }, {"\u3057\u3085", new(["SYU", "SHU"],  "[ɕɯ]") }, {"\u3057\u3087", new(["SYO", "SHO"],  "[ɕo]") }, // s

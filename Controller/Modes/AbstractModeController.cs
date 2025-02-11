@@ -1,4 +1,5 @@
 ﻿using kanavrt.Model;
+using System;
 
 namespace kanavrt.Controller.Modes {
 	public abstract class AbstractModeController {
@@ -68,11 +69,11 @@ namespace kanavrt.Controller.Modes {
 		public virtual void Update(string syllable) {
 			if (CorrectSyllable.Equals(syllable)) {
 				CorrectGuesses++;
-				Model.lookup[syllable].Corrects++; 
+				Model.lookup[CorrectSyllable].Corrects++; 
 			} 
 			else {
 				WrongGuesses++;
-				Model.lookup[syllable].Wrongs++; 
+				Model.lookup[CorrectSyllable].Wrongs++; 
 			}
 
 			NextMove();
@@ -91,7 +92,6 @@ namespace kanavrt.Controller.Modes {
 		public virtual void Reset() {
 			WrongGuesses = 0;
 			CorrectGuesses = 0;
-			NextMove();
 		}
 	}
 }

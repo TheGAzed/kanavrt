@@ -4,9 +4,11 @@
     --purple: #3A3399;
     --light-purple: #B6B2E5;
     --white: #E6E6E6;
-    --gray: #BFBFBF;
+    --light-gray: #BFBFBF;
+    --dark-gray: #595959;
     --red: #953131;
     --green: #31955A;
+    --yellow: #736D26;
 }
 
 body {

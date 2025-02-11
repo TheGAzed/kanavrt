@@ -1,0 +1,126 @@
+﻿@using kanavrt.Model.Settings.Grid.Table
+
+@code {
+	[Parameter]
+	public bool isDiacritic { get; set; }
+
+	[Parameter]
+	public EventCallback<bool> isDiacriticChanged { get; set; }
+
+	[Parameter]
+	public HashSet<string> characterSet { get; set; }
+
+	[Parameter]
+	public EventCallback<HashSet<string>> characterSetChanged { get; set; }
+}
+
+
+@code {
+	protected void toggleDiacritic(bool change) {
+		isDiacritic = change;
+
+		isDiacriticChanged.InvokeAsync(isDiacritic);
+	}
+
+	protected void toggleVowelsLine(AbstractTableModel letters, bool change, int index) {
+		if (change) {
+			characterSet.UnionWith(letters.VowelsLineSetLookup[index]);
+		} else {
+			characterSet.ExceptWith(letters.VowelsLineSetLookup[index]);
+		}
+
+		characterSetChanged.InvokeAsync(characterSet);
+
+		letters.VowelsLineLookup[index] = change;
+	}
+
+	protected void toggleConsonantsLine(AbstractTableModel letters, bool change, int index) {
+		if (change) {
+			characterSet.UnionWith(letters.ConsonantsLineSetLookup[index]);
+		} else {
+			characterSet.ExceptWith(letters.ConsonantsLineSetLookup[index]);
+		}
+
+		characterSetChanged.InvokeAsync(characterSet);
+
+		letters.ConsonantsLineLookup[index] = change;
+	}
+
+	protected void toggleVowels(AbstractTableModel letters, bool change) {
+		if (change) {
+			characterSet.UnionWith(letters.VowelsSet);
+		} else {
+			characterSet.ExceptWith(letters.VowelsSet);
+		}
+
+		characterSetChanged.InvokeAsync(characterSet);
+
+		letters.isVowels = change;
+	}
+
+	protected void toggleConsonants(AbstractTableModel letters, bool change) {
+		if (change) {
+			characterSet.UnionWith(letters.ConsonantsSet);
+		} else {
+			characterSet.ExceptWith(letters.ConsonantsSet);
+		}
+
+		characterSetChanged.InvokeAsync(characterSet);
+
+		letters.isConsonants = change;
+	}
+
+	protected void toggleCharacter(string character) {
+		if (!characterSet.Contains(character)) {
+			characterSet.Add(character);
+		} else {
+			characterSet.Remove(character);
+		}
+
+		characterSetChanged.InvokeAsync(characterSet);
+	}
+
+	protected bool lineVowelsState(AbstractTableModel letters, int index) {
+		if (characterSet.IsSupersetOf(letters.VowelsLineSetLookup[index])) {
+			letters.VowelsLineLookup[index] = true;
+		} else if (!characterSet.Overlaps(letters.VowelsLineSetLookup[index])) {
+			letters.VowelsLineLookup[index] = false;
+		}
+
+		return letters.VowelsLineLookup[index];
+	}
+
+	protected bool lineConsonantsState(AbstractTableModel letters, int index) {
+		if (characterSet.IsSupersetOf(letters.ConsonantsLineSetLookup[index])) {
+			letters.ConsonantsLineLookup[index] = true;
+		} else if (!characterSet.Overlaps(letters.ConsonantsLineSetLookup[index])) {
+			letters.ConsonantsLineLookup[index] = false;
+		}
+
+		return letters.ConsonantsLineLookup[index];
+	}
+
+	protected bool vowelsState(AbstractTableModel letters) {
+		if (characterSet.IsSupersetOf(letters.VowelsSet)) {
+			letters.isVowels = true;
+		} else if (!characterSet.Overlaps(letters.VowelsSet)) {
+			letters.isVowels = false;
+		}
+
+		return letters.isVowels;
+	}
+
+	protected bool consonantsState(AbstractTableModel letters) {
+		if (characterSet.IsSupersetOf(letters.ConsonantsSet)) {
+			letters.isConsonants = true;
+		} else if (!characterSet.Overlaps(letters.ConsonantsSet)) {
+			letters.isConsonants = false;
+		}
+
+		return letters.isConsonants;
+	}
+
+	protected bool characterState(string character) {
+		return characterSet.Contains(character);
+	}
+}

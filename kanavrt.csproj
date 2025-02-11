@@ -18,7 +18,10 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\svg\contact\" />
-    <Folder Include="wwwroot\img\svg\modes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\mainnav.css" />
   </ItemGroup>
 
 </Project>
