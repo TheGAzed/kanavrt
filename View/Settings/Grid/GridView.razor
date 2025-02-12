@@ -17,15 +17,17 @@
 <article>
 	<h4>KANA COUNT : @(model.characters.Count)</h4>
 	<section>
-		@if (!isDigraph && !isDiacritic) {
-			<MonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></MonographTableView>
-		} else if (!isDigraph && isDiacritic) {
-			<DiacriticMonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DiacriticMonographTableView>
-		} else if (isDigraph && !isDiacritic) {
-			<DigraphTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DigraphTableView>
-		} else if (isDigraph && isDiacritic) {
-
-		}
+		<table id="character-set-table">
+            @if (!isDigraph && !isDiacritic) {
+                <MonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></MonographTableView>
+            } else if (!isDigraph && isDiacritic) {
+                <DiacriticMonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DiacriticMonographTableView>
+            } else if (isDigraph && !isDiacritic) {
+                <DigraphTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DigraphTableView>
+            } else if (isDigraph && isDiacritic) {
+                <DiacriticDigraphTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DiacriticDigraphTableView>
+            }
+		</table>
 
 		<div id="graph-type">
 			<InputRadioGroup @bind-Value="@isDigraph">

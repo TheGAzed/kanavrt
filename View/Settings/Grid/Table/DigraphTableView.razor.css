@@ -1,20 +1,11 @@
-﻿table#character-set-table {
-    grid-column: 1;
-    grid-row: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(13, 1fr);
-    gap: 0.1rem;
-}
-
-td.vowel-data, td.character {
+﻿td.vowel-data, td.character {
     grid-column: span 2;
 }
 
 tr.character-line {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 0.1rem;
+    gap: 0.05rem;
 }
 
 label.toggle-label {

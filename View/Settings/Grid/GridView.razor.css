@@ -34,7 +34,7 @@ table#character-set-table {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(13, 1fr);
-    gap: 0.1rem;
+    gap: 0.05rem;
 }
 
 tr.character-line {
@@ -73,4 +73,40 @@ label.character-toggle-label {
 input.character-toggle-input:checked + label.character-toggle-label {
     background-color: var(--green);
     color: var(--white);
+}
+
+@media screen and (max-height: 900px) {
+    h4 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    section {
+        justify-content: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 13fr;
+    }
+
+    div#graph-type {
+        grid-row: 1;
+        flex-direction: row;
+        width: unset;
+        height: unset;
+        gap: 0.5rem;
+    }
+
+
+    label.graph-label {
+        writing-mode: unset;
+    }
+
+
+    table#character-set-table {
+        grid-row: 2;
+    }
+
+    section {
+        gap: 0.25rem;
+    }
 }

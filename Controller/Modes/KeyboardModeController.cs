@@ -5,7 +5,13 @@ namespace kanavrt.Controller.Modes {
 	public class KeyboardModeController(KanaModel model) : AbstractModeController(model, 1) {
 		public StringBuilder PartialGuess { get; set; } = new();
 
-		public bool IsPartial(string latin) {
+		public bool IsPartialWrapper(string latin) {
+			if (isError) throw new("Can't call function if controller Error.");
+
+			return IsPartial(latin);
+		}
+
+		protected bool IsPartial(string latin) {
 			string[] latinForms = Model.lookup[CorrectSyllable].Latin;
 
 			foreach (string latinForm in latinForms) {
@@ -17,7 +23,7 @@ namespace kanavrt.Controller.Modes {
 			return false;
 		}
 
-		public override void Update(string syllable) {
+		protected override void Update(string syllable) {
 			PartialGuess.Append(syllable);
 			string partial = PartialGuess.ToString();
 

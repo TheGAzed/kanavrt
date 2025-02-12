@@ -140,7 +140,7 @@ input.bar-toggle + label.bar-toggle > img#volume-off {
     display: unset;
 }
 
-span.progress-bar {
+div.progress-bar {
     flex-grow: 1;
     display: flex;
     background-color: var(--light-gray);
@@ -169,7 +169,7 @@ div.right-progress {
     }
 }
 
-@media screen and (max-height: 950px) {
+@media screen and (max-height: 900px) {
     h4 {
         display: none;
     }

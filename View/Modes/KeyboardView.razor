@@ -50,15 +50,15 @@
 
 		updateLookup(PartiaLatin);
 
-		if (controller.IsPartial(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
+		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
 			updateProgressBar(FullLatin);
-			if (!controller.IsCorrect(PartiaLatin)) FullLatin = model.lookup[controller.CorrectSyllable].Latin[0];
+			if (!controller.IsCorrectWrapper(PartiaLatin)) FullLatin = model.lookup[controller.CorrectSyllable].Latin[0];
 			await Task.Delay(1000);
 		}
 
-		controller.Update(character);
+		controller.UpdateWrapper(character);
 
-		if (controller.IsPartial(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
+		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
 			resetLookup(PartiaLatin);
 			resetLookup(FullLatin);
 			PartiaLatin = FullLatin = string.Empty;
@@ -81,7 +81,7 @@
 	void updateProgressBar(string latin) {
 		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
 
-		if (controller.IsCorrect(latin)) correct++;
+		if (controller.IsCorrectWrapper(latin)) correct++;
 		else wrong++;
 
 		double sum = correct + wrong;
@@ -109,9 +109,9 @@
 
 		Match latinlMatch = regex.Match(latin);
 		string characterState = string.Empty;
-		if (!controller.IsPartial(latin)) {
+		if (!controller.IsPartialWrapper(latin)) {
 			characterState = "roman-character-wrong";
-		} else if (controller.IsCorrect(latin)) {
+		} else if (controller.IsCorrectWrapper(latin)) {
 			characterState = "roman-character-correct";
 		} else {
 			characterState = "roman-character-partial";
@@ -119,8 +119,8 @@
 
 		foreach (Group g in latinlMatch.Groups) {
 			if (lookupState.ContainsKey(g.Value)) {
-				isDigraph   = digraphSet.Contains(g.Value) ? true : false;
-				isDiacritic = diacriticGraphSet.Contains(g.Value) ? true : false;
+				isDigraph = isDigraph || digraphSet.Contains(g.Value) ? true : false;
+				isDiacritic = isDiacritic || diacriticGraphSet.Contains(g.Value) ? true : false;
 
 				lookupState[g.Value] = characterState;
 			}
@@ -132,33 +132,18 @@
 	<h4>KEYBOARD MODE</h4>
 
 	<div class="info-bar">
-		<span class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
+		<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
 			<div class="left-progress" style="width: @(leftBar)%;"></div>
-		</span>
-
-		<!--
-		<InputCheckbox @bind-Value="model.IsHepburnOn" class="bar-toggle" id="hepburn-toggle" DisplayName="hepburn-toggle" style="display: none;" />
-		<label for="hepburn-toggle" id="hepburn-toggle" class="bar-toggle">
-			HB
-		</label>
-		-->
+		</div>
 
 		<input type="button" class="bar-button" name="reset-button" />
 		<label class="bar-button" for="reset-button" @onclick="() => resetController()">
 			<img src="img/svg/modes/arrow-clockwise.svg" alt="next icon" />
 		</label>
 
-		<!--
-		<InputCheckbox @bind-Value="model.IsSoundOn" class="bar-toggle" id="sound-toggle" DisplayName="sound-toggle" style="display: none;" />
-		<label for="sound-toggle" id="sound-toggle" class="bar-toggle">
-			<img src="img/svg/modes/volume-off.svg" id="volume-off" alt="speaker icon" />
-			<img src="img/svg/modes/volume-down.svg" id="volume-on" alt="speaker icon" />
-		</label>
-		-->
-
-		<span class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
+		<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
 			<div class="right-progress" style="width: @(rightBar)%;"></div>
-		</span>
+		</div>
 	</div>
 
 	<section>

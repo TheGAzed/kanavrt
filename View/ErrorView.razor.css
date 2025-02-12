@@ -1,0 +1,27 @@
+﻿section#error-section {
+	display: flex;
+	flex-direction: column;
+}
+
+hgroup#error-header-group > h4, h5 {
+	text-align: center;
+}
+
+h4#error-message {
+	margin: 0;
+	font-size: 1.25rem;
+}
+
+h5#error-solution {
+	font-weight: normal;
+}
+
+@media screen and (max-width: 650px) {
+	section#home-section {
+		justify-content: center;
+	}
+
+	hgroup#error-header-group > h4, h5 {
+		text-align: center;
+	}
+}

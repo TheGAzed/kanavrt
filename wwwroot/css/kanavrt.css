@@ -30,6 +30,12 @@ h3 {
     font-size: 1.5rem;
 }
 
+h4 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 a, .btn-link {
     display: inline-block;
     text-decoration: none;
@@ -124,27 +130,28 @@ section {
 @media screen and (max-width: 650px) {
     section {
         width: 22.5rem;
-        height: 35rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1rem;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
-@media screen and (max-height: 850px) {
+@media screen and (max-width: 400px) {
     section {
-        height: 30rem;
+        width: 90%;
     }
 }
 
 @media screen and (max-height: 800px) {
     section {
-        height: 25rem;
+        height: 30rem;
     }
 }
 
 @media screen and (max-height: 700px) {
+    section {
+        height: 25rem;
+    }
+}
+
+@media screen and (max-height: 600px) {
     section {
         height: 20rem;
     }

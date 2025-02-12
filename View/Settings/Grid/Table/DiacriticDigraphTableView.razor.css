@@ -1,4 +1,8 @@
-﻿tr.character-line {
+﻿td.vowel-data, td.character {
+    grid-column: span 2;
+}
+
+tr.character-line {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.05rem;
@@ -34,4 +38,9 @@ label.character-toggle-label {
 input.character-toggle-input:checked + label.character-toggle-label {
     background-color: var(--green);
     color: var(--white);
+}
+
+label.character-toggle-label-unset {
+    opacity: 50%;
+    cursor: default;
 }

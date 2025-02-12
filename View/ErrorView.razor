@@ -1,0 +1,22 @@
+﻿@page "/Error"
+@using System.Diagnostics
+
+<PageTitle>Error</PageTitle>
+
+@code {
+	[Parameter]
+	public int Value { get; set; }
+	[Parameter]
+	public string Message { get; set; } = "";
+	[Parameter]
+	public string Solution { get; set; } = "";
+}
+
+<article id="error-sub-article">
+	<section id="error-section">
+        <hgroup id="error-header-group">
+			<h5 id="error-message">[ERROR @Value] @Message</h5>
+			<h6 id="error-solution">@Solution</h6>
+        </hgroup>
+    </section>
+</article>
