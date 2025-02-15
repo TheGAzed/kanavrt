@@ -1,13 +1,115 @@
 ﻿@page "/settings/fonts"
 
+@using kanavrt.Model.Settings
+
+@inject SettingsModel settingsModel
+
 <PageTitle>Fonts settings</PageTitle>
 
 <SettingsSideNavView></SettingsSideNavView>
 
-<article>
-    <section>
-        <h1>Hello, world!</h1>
+@code {
+	Random random = new Random();
+	string character = "\u3042";
+}
 
-        Welcome to your new app.
-    </section>
+<article>
+	<h4>FONT SELECTION</h4>
+
+	<section id="font-select-settings">
+		<table id="font-table">
+			<InputRadioGroup @bind-Value="@(settingsModel.Font)">
+				<tr class="font-category-row">
+					<td>
+						<p class="font-category-name @((int)(settingsModel.Font) < 3 ? "font-category-name-active" : "")">BASIC</p>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.Unset" id="unset-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="unset-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.Unset]);">@(character)</p>
+							<small class="font-name">Initial</small>
+						</label>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.ZenKurenaido" id="zen-kurenaido-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="zen-kurenaido-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.ZenKurenaido]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.ZenKurenaido])</small>
+						</label>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.DotGothic16" id="dot-gothic-16-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="dot-gothic-16-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.DotGothic16]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.DotGothic16])</small>
+						</label>
+					</td>
+				</tr>
+
+				<tr class="font-category-row">
+					<td>
+						<p class="font-category-name @((int)(settingsModel.Font) >= 3 && (int)(settingsModel.Font) <= 5 ? "font-category-name-active" : "")">INTER</p>
+					</td>
+
+
+					<td>
+						<InputRadio Value="FontType.Hannari" id="hannari-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="hannari-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.Hannari]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.Hannari])</small>
+						</label>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.AoboshiOne" id="aoboshi-one-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="aoboshi-one-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.AoboshiOne]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.AoboshiOne])</small>
+						</label>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.CherryBombOne" id="cherry-bomb-one-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="cherry-bomb-one-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.CherryBombOne]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.CherryBombOne])</small>
+						</label>
+					</td>
+				</tr>
+
+				<tr class="font-category-row">
+					<td>
+						<p class="font-category-name @((int)(settingsModel.Font) > 5 ? "font-category-name-active" : "")">HARD</p>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.DelaGothicOne" id="dela-gothic-one-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="dela-gothic-one-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.DelaGothicOne]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.DelaGothicOne])</small>
+						</label>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.MonomaniacOne" id="monomaniac-one-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="monomaniac-one-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.MonomaniacOne]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.MonomaniacOne])</small>
+						</label>
+					</td>
+
+					<td>
+						<InputRadio Value="FontType.Chokokutai" id="chokokutai-font-input" style="display: none;" class="font-input"></InputRadio>
+						<label for="chokokutai-font-input" class="font-type-label">
+							<p class="font-character" style="font-family: @(settingsModel.lookup[FontType.Chokokutai]);">@(character)</p>
+							<small class="font-name">@(settingsModel.lookup[FontType.Chokokutai])</small>
+						</label>
+					</td>
+				</tr>
+			</InputRadioGroup>
+		</table>
+	</section>
 </article>

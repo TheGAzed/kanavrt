@@ -1,32 +1,34 @@
 ﻿using kanavrt.Model;
+using kanavrt.Model.Statistics;
+using kanavrt.Model.Settings;
 
 namespace kanavrt.Controller.Modes {
-    public class EitherOrModeController(KanaModel model) : AbstractModeController(model, 2) {
+    public class EitherOrModeController(KanaModel kanaModel, StatisticsModel statisticsModel, SettingsModel settingsModel) : AbstractModeController(kanaModel, statisticsModel, settingsModel, 2) {
         public string WrongSyllable { get; set; } = string.Empty;
 
         protected override void InitialMove() {
             base.InitialMove();
 
-            int index = random.Next(0, Model.characters.Count);
-            CorrectSyllable = Model.characters.ElementAt(index);
-            Model.characters.Remove(CorrectSyllable);
+            int index = random.Next(0, settingsModel.characters.Count);
+            CorrectSyllable = settingsModel.characters.ElementAt(index);
+			settingsModel.characters.Remove(CorrectSyllable);
 
-            index = random.Next(0, Model.characters.Count);
-            WrongSyllable = Model.characters.ElementAt(index);
+            index = random.Next(0, settingsModel.characters.Count);
+            WrongSyllable = settingsModel.characters.ElementAt(index);
 
-            Model.characters.Add(CorrectSyllable);
+            settingsModel.characters.Add(CorrectSyllable);
         }
 
         protected override void NextMove() {
-            if (Model.characters.Count == GuessCount) {
+            if (settingsModel.characters.Count == GuessCount) {
                 InitialMove();
             } else {
                 string temp = CorrectSyllable;
-                Model.characters.Remove(CorrectSyllable);
+                settingsModel.characters.Remove(CorrectSyllable);
 
                 InitialMove();
 
-                Model.characters.Add(temp);
+                settingsModel.characters.Add(temp);
             }
         }
     }

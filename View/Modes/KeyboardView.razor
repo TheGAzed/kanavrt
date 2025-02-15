@@ -1,10 +1,13 @@
 ﻿@page "/modes/keyboard"
 
 @using kanavrt.Model
+@using kanavrt.Model.Statistics
+@using kanavrt.Model.Settings
 @using kanavrt.Controller.Modes
 @using System.Text.RegularExpressions
 
-@inject KanaModel model
+@inject KanaModel kanaModel
+@inject SettingsModel settingsModel
 @inject KeyboardModeController controller
 
 <PageTitle>Keyboard mode</PageTitle>
@@ -14,9 +17,6 @@
 @code {
 	bool isDigraph   = false;
 	bool isDiacritic = false;
-
-	double leftBar  = 0;
-	double rightBar = 0;
 
 	Regex regex = new("([AIUEO])|([KSTNHMYRMCFGZDBPJ])(YA|YU|YO|[AIUEO])|([KSTNHMYRMCFGZDBPJ])([KSTNHMYRMCFGZDBPJ])(YA|YU|YO|[AIUEO])|([KSTNHMYRMCFGZDBPJ])([KSTNHMYRMCFGZDBPJ])|([KSTNHMYRMCFGZDBPJ])");
 
@@ -40,6 +40,7 @@
 	string FullLatin = "";
 	string PartiaLatin = "";
 	Task? main = null;
+	private ProgressBarView progressBar;
 
 	async Task checkClick(string character) {
 		if (main != null && !main.IsCompleted) return;
@@ -51,8 +52,8 @@
 		updateLookup(PartiaLatin);
 
 		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
-			updateProgressBar(FullLatin);
-			if (!controller.IsCorrectWrapper(PartiaLatin)) FullLatin = model.lookup[controller.CorrectSyllable].Latin[0];
+			progressBar.updateProgressBar(FullLatin);
+			if (!controller.IsCorrectWrapper(PartiaLatin)) FullLatin = kanaModel.lookup[controller.CorrectSyllable].Latin[0];
 			await Task.Delay(1000);
 		}
 
@@ -75,22 +76,6 @@
 	async Task resetController() {
 		if (main != null) await main;
 		controller.Reset();
-		resetProgressBar();
-	}
-
-	void updateProgressBar(string latin) {
-		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
-
-		if (controller.IsCorrectWrapper(latin)) correct++;
-		else wrong++;
-
-		double sum = correct + wrong;
-		rightBar = (correct / sum) * 100;
-		leftBar = (wrong / sum) * 100;
-	}
-
-	void resetProgressBar() {
-		leftBar = rightBar = 0;
 	}
 
 	void resetLookup(string latin) {
@@ -131,23 +116,10 @@
 <article>
 	<h4>KEYBOARD MODE</h4>
 
-	<div class="info-bar">
-		<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
-			<div class="left-progress" style="width: @(leftBar)%;"></div>
-		</div>
-
-		<input type="button" class="bar-button" name="reset-button" />
-		<label class="bar-button" for="reset-button" @onclick="() => resetController()">
-			<img src="img/svg/modes/arrow-clockwise.svg" alt="next icon" />
-		</label>
-
-		<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
-			<div class="right-progress" style="width: @(rightBar)%;"></div>
-		</div>
-	</div>
+	<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
 
 	<section>
-		<p class="japanese-character">@(controller.CorrectSyllable)</p>
+		<p style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="japanese-character">@(controller.CorrectSyllable)</p>
 
 		<p class="latin-guess">@(FullLatin)</p>
 

@@ -98,5 +98,6 @@ a.side-link-active {
             width: inherit;
             display: flex;
             justify-content: center;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 }

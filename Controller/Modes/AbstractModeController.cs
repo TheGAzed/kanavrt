@@ -1,4 +1,6 @@
 ﻿using kanavrt.Model;
+using kanavrt.Model.Statistics;
+using kanavrt.Model.Settings;
 using System;
 
 namespace kanavrt.Controller.Modes {
@@ -18,9 +20,11 @@ namespace kanavrt.Controller.Modes {
 		/// </summary>
 		public string CorrectSyllable { get; set; } = string.Empty;
 		/// <summary>
-		/// Character model to get random characters from.
+		/// Character kanaModel to get random characters from.
 		/// </summary>
-		protected KanaModel Model { get; }
+		protected KanaModel kanaModel { get; }
+		protected StatisticsModel statisticsModel { get; }
+		protected SettingsModel settingsModel { get; }
 		/// <summary>
 		/// Class to generate random indexes to get syllables.
 		/// </summary>
@@ -31,15 +35,17 @@ namespace kanavrt.Controller.Modes {
 		public int WrongGuesses { get; set; } = 0;
 		public int CorrectGuesses { get; set; } = 0;
 
-		public AbstractModeController(KanaModel model, int guessCount) {
+		public AbstractModeController(KanaModel kanaModel, StatisticsModel statisticsModel, SettingsModel settingsModel, int guessCount) {
 			GuessCount = guessCount;
-			Model = model;
+			this.kanaModel = kanaModel;
+			this.statisticsModel = statisticsModel;
+			this.settingsModel = settingsModel;
 
 			if (0 == guessCount) { // guess count must be greater than 0
 				throw new Exception("[ERROR01] 'guessCount' parameter can't be zero.");
 			}
 
-			if (guessCount > model.characters.Count) { // model must have at least guessCount characters to work properly
+			if (guessCount > settingsModel.characters.Count) { // kanaModel must have at least guessCount characters to work properly
 				isError = true;
 				Error = new("Available syllable count is less than " + guessCount + '.', "Increase syllable count in settings to " + guessCount + " or more.", 1);
 				return;
@@ -58,8 +64,8 @@ namespace kanavrt.Controller.Modes {
 		/// Initial move thet gets called by the contructor.
 		/// </summary>
 		protected virtual void InitialMove() {
-			int index = random.Next(0, Model.characters.Count);
-			CorrectSyllable = Model.characters.ElementAt(index);
+			int index = random.Next(0, settingsModel.characters.Count);
+			CorrectSyllable = settingsModel.characters.ElementAt(index);
 		}
 
 		protected void NextMoveWrapper() {
@@ -71,14 +77,14 @@ namespace kanavrt.Controller.Modes {
 		/// Next move that gets called by update after the user succedes/fails at guessing the correct character.
 		/// </summary>
 		protected virtual void NextMove() {
-			if (1 == Model.characters.Count) return;
+			if (1 == settingsModel.characters.Count) return;
 
-			Model.characters.Remove(CorrectSyllable);
+			settingsModel.characters.Remove(CorrectSyllable);
 
-			int index = random.Next(0, Model.characters.Count);
+			int index = random.Next(0, settingsModel.characters.Count);
 
-			string temp = Model.characters.ElementAt(index);
-			Model.characters.Add(CorrectSyllable);
+			string temp = settingsModel.characters.ElementAt(index);
+			settingsModel.characters.Add(CorrectSyllable);
 			CorrectSyllable = temp;
 		}
 
@@ -94,11 +100,11 @@ namespace kanavrt.Controller.Modes {
 		protected virtual void Update(string syllable) {
 			if (CorrectSyllable.Equals(syllable)) {
 				CorrectGuesses++;
-				Model.lookup[CorrectSyllable].Corrects++; 
+				statisticsModel.lookup[CorrectSyllable].Corrects++; 
 			} 
 			else {
 				WrongGuesses++;
-				Model.lookup[CorrectSyllable].Wrongs++; 
+				statisticsModel.lookup[CorrectSyllable].Wrongs++; 
 			}
 
 			NextMove();
@@ -116,7 +122,7 @@ namespace kanavrt.Controller.Modes {
 		/// <param name="latin">String syllable to check.</param>
 		/// <returns>true, if latin syllable is correct, false otherwise</returns>
 		protected virtual bool IsCorrect(string latin) {
-			string[] latinForms = Model.lookup[CorrectSyllable].Latin;
+			string[] latinForms = kanaModel.lookup[CorrectSyllable].Latin;
 			return latinForms.Contains(latin);
 		}
 
@@ -129,6 +135,7 @@ namespace kanavrt.Controller.Modes {
 		public virtual void Reset() {
 			WrongGuesses = 0;
 			CorrectGuesses = 0;
+			NextMove();
 		}
 	}
 }

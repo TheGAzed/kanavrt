@@ -91,8 +91,10 @@ button.roman-character {
 	background-color: var(--white);
 	width: 2rem;
 	height: 2rem;
-	border: 0.125rem solid var(--black);
+	outline: 0.125rem solid var(--black);
 	border-radius: 0.25rem;
+	border: none;
+	outline-offset: -0.125rem;
 }
 
 button.roman-character-unset {
@@ -285,11 +287,5 @@ div.right-progress {
 		justify-content: center;
 		align-items: center;
 		font-size: 1rem;
-	}
-}
-
-@media screen and (max-height: 900px) {
-	h4 {
-		display: none;
 	}
 }

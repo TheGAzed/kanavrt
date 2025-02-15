@@ -1,0 +1,103 @@
+﻿div.info-bar {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 35rem;
+    height: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+input, bar-button, input.bar-toggle {
+    display: none;
+}
+
+label.bar-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--white);
+    outline: solid 0.2rem var(--black);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+label.bar-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--light-gray);
+    border: solid 0.2rem var(--light-gray);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+input.bar-toggle:checked + label.bar-toggle {
+    background-color: var(--black);
+    border: solid 0.2rem var(--black);
+    color: var(--white);
+}
+
+    input.bar-toggle:checked + label.bar-toggle > img {
+        filter: invert(100%) sepia(1%) saturate(684%) hue-rotate(263deg) brightness(116%) contrast(80%);
+    }
+
+label.bar-button:hover {
+    transform: scale(95%);
+}
+
+input.bar-toggle:checked + label.bar-toggle > img#volume-off {
+    display: none;
+}
+
+input.bar-toggle:checked + label.bar-toggle > img#volume-on {
+    display: unset;
+}
+
+input.bar-toggle + label.bar-toggle > img#volume-on {
+    display: none;
+}
+
+input.bar-toggle + label.bar-toggle > img#volume-off {
+    display: unset;
+}
+
+div.progress-bar {
+    flex-grow: 1;
+    display: flex;
+    background-color: var(--light-gray);
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+div.left-progress, div.right-progress {
+    height: 100%;
+    width: 0%;
+    transition: width 1500ms ease-in-out;
+}
+
+div.left-progress {
+    background-color: var(--red);
+    margin-left: auto;
+}
+
+div.right-progress {
+    background-color: var(--green);
+}
+
+@media screen and (max-width: 650px) {
+    div.info-bar {
+        width: 22.5rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    div.info-bar {
+        width: 90%;
+    }
+}

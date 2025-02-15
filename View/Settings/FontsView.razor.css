@@ -1,0 +1,63 @@
+﻿section#font-select-settings {
+	display: flex;
+	flex-direction: column;
+}
+
+table#font-table {
+	display: grid;
+	width: inherit;
+	height: inherit;
+}
+
+tr.font-category-row {
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr 2fr;
+	gap: 0.25rem;
+}
+
+td {
+	display: contents;
+}
+
+p.font-category-name {
+	display: flex;
+	writing-mode: sideways-lr;
+	margin: unset;
+	padding: unset;
+	align-items: center;
+	justify-content: center;
+}
+
+p.font-category-name-active {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+label.font-type-label {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	align-items: center;
+	cursor: pointer;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	justify-content: space-around;
+}
+
+input.font-input:checked + label.font-type-label {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+p.font-character {
+	margin: unset;
+	padding: unset;
+	font-size: 4rem;
+	user-select: none;
+	height: 6rem;
+}
+
+small.font-name {
+	user-select: none;
+	text-align: center;
+}

@@ -1,0 +1,50 @@
+﻿@using kanavrt.Controller.Modes
+
+@code {
+	[Parameter]
+	public AbstractModeController controller { get; set; }
+
+	[Parameter]
+	public EventCallback<bool> controllerChanged { get; set; }
+
+	double leftBar = 0;
+	double rightBar = 0;
+
+	public void updateProgressBar(string latin) {
+		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
+
+		if (controller.IsCorrectWrapper(latin)) correct++;
+		else wrong++;
+
+		double sum = correct + wrong;
+		rightBar = (correct / sum) * 100;
+		leftBar = (wrong / sum) * 100;
+	}
+
+	private void resetProgressBar() {
+		leftBar = rightBar = 0;
+	}
+
+	[Parameter]
+	public EventCallback handleReset { get; set; }
+
+	private async Task TriggerReset () {
+		await handleReset.InvokeAsync();
+		resetProgressBar();
+	}
+}
+
+<div class="info-bar">
+	<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
+		<div class="left-progress" style="width: @(leftBar)%;"></div>
+	</div>
+
+	<input type="button" class="bar-button" name="reset-button" />
+	<label class="bar-button" for="reset-button" @onclick="TriggerReset">
+		<img src="img/svg/modes/arrow-clockwise.svg" alt="next icon" />
+	</label>
+
+	<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
+		<div class="right-progress" style="width: @(rightBar)%;"></div>
+	</div>
+</div>

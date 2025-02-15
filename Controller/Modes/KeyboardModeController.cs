@@ -1,8 +1,10 @@
 ﻿using kanavrt.Model;
+using kanavrt.Model.Settings;
+using kanavrt.Model.Statistics;
 using System.Text;
 
 namespace kanavrt.Controller.Modes {
-	public class KeyboardModeController(KanaModel model) : AbstractModeController(model, 1) {
+	public class KeyboardModeController(KanaModel kanaModel, StatisticsModel statisticsModel, SettingsModel settingsModel) : AbstractModeController(kanaModel, statisticsModel, settingsModel, 1) {
 		public StringBuilder PartialGuess { get; set; } = new();
 
 		public bool IsPartialWrapper(string latin) {
@@ -12,7 +14,7 @@ namespace kanavrt.Controller.Modes {
 		}
 
 		protected bool IsPartial(string latin) {
-			string[] latinForms = Model.lookup[CorrectSyllable].Latin;
+			string[] latinForms = kanaModel.lookup[CorrectSyllable].Latin;
 
 			foreach (string latinForm in latinForms) {
 				if (latinForm.StartsWith(latin)) { 
@@ -29,10 +31,10 @@ namespace kanavrt.Controller.Modes {
 
 			if (IsPartial(partial) == IsCorrect(partial)) {
 				if (IsCorrect(partial)) { 
-					Model.lookup[CorrectSyllable].Corrects++;
+					statisticsModel.lookup[CorrectSyllable].Corrects++;
 					CorrectGuesses++;
 				} else { 
-					Model.lookup[CorrectSyllable].Wrongs++;
+					statisticsModel.lookup[CorrectSyllable].Wrongs++;
 					WrongGuesses++;
 				}
 

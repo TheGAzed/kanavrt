@@ -1,39 +1,47 @@
 ﻿@page "/settings/grid"
 
-@using kanavrt.Model
+@using kanavrt.Model.Settings
 @using kanavrt.View.Settings.Grid.Table
 
-@inject KanaModel model
+@inject SettingsModel model
 
 <PageTitle>Grid settings</PageTitle>
 
 <SettingsSideNavView></SettingsSideNavView>
 
 @code {
+	enum GraphCount {
+		Monograph,
+		Digraph,
+	}
+
+	private GraphCount type = GraphCount.Monograph;
+
 	bool isDigraph = false;
-	bool isDiacritic = false;
+	bool isDiacriticMonograph = false;
+	bool isDiacriticDigraph = false;
 }
 
 <article>
 	<h4>KANA COUNT : @(model.characters.Count)</h4>
 	<section>
 		<table id="character-set-table">
-            @if (!isDigraph && !isDiacritic) {
-                <MonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></MonographTableView>
-            } else if (!isDigraph && isDiacritic) {
-                <DiacriticMonographTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DiacriticMonographTableView>
-            } else if (isDigraph && !isDiacritic) {
-                <DigraphTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DigraphTableView>
-            } else if (isDigraph && isDiacritic) {
-                <DiacriticDigraphTableView @bind-isDiacritic="isDiacritic" @bind-characterSet="model.characters"></DiacriticDigraphTableView>
+            @if (type == GraphCount.Monograph && !isDiacriticMonograph) {
+                <MonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></MonographTableView>
+			} else if (type == GraphCount.Monograph && isDiacriticMonograph) {
+                <DiacriticMonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></DiacriticMonographTableView>
+			} else if (type == GraphCount.Digraph && !isDiacriticDigraph) {
+				<DigraphTableView @bind-isDiacritic="isDiacriticDigraph" @bind-characterSet="model.characters"></DigraphTableView>
+			} else if (type == GraphCount.Digraph && isDiacriticDigraph) {
+				<DiacriticDigraphTableView @bind-isDiacritic="isDiacriticDigraph" @bind-characterSet="model.characters"></DiacriticDigraphTableView>
             }
 		</table>
 
 		<div id="graph-type">
-			<InputRadioGroup @bind-Value="@isDigraph">
-				<InputRadio id="monograph-input" Value="false" class="graph-input" style="display: none;"/>
+			<InputRadioGroup @bind-Value="@(type)">
+				<InputRadio id="monograph-input" Value="GraphCount.Monograph" class="graph-input" style="display: none;" @onclick="() => isDiacriticDigraph = false" />
 				<label class="graph-label" id="monograph-label" for="monograph-input">MONOGRAPHS</label>
-				<InputRadio Value="true" id="digraph-input" class="graph-input" style="display: none;" />
+				<InputRadio Value="GraphCount.Digraph" id="digraph-input" class="graph-input" style="display: none;" @onclick="() => isDiacriticMonograph = false" />
 				<label class="graph-label" id="digraph-label" for="digraph-input">DIGRAPHS</label>
 			</InputRadioGroup>
 		</div>

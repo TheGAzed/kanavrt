@@ -169,12 +169,6 @@ div.right-progress {
     }
 }
 
-@media screen and (max-height: 900px) {
-    h4 {
-        display: none;
-    }
-}
-
 @media screen and (max-height: 850px) {
     button.guess-button, button.guess-button-active {
         font-size: 6rem;

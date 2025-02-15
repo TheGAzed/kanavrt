@@ -21,6 +21,7 @@ label.graph-label {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    user-select: none;
 }
 
 input.graph-input:checked + label.graph-label {
@@ -73,12 +74,6 @@ label.character-toggle-label {
 input.character-toggle-input:checked + label.character-toggle-label {
     background-color: var(--green);
     color: var(--white);
-}
-
-@media screen and (max-height: 900px) {
-    h4 {
-        display: none;
-    }
 }
 
 @media screen and (max-width: 650px) {
