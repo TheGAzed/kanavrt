@@ -10,7 +10,7 @@
 @inject SettingsModel settingsModel
 @inject KeyboardModeController controller
 
-<PageTitle>Keyboard mode</PageTitle>
+<PageTitle>Keyboard mode | KANAVRT</PageTitle>
 
 <ModesSideNavView></ModesSideNavView>
 
@@ -116,9 +116,9 @@
 <article>
 	<h4>KEYBOARD MODE</h4>
 
-	<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
-
 	<section>
+		<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
+
 		<p style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="japanese-character">@(controller.CorrectSyllable)</p>
 
 		<p class="latin-guess">@(FullLatin)</p>

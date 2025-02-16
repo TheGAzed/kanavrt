@@ -9,7 +9,7 @@
 @inject SettingsModel settingsModel
 @inject EitherOrModeController controller
 
-<PageTitle>Either-or mode</PageTitle>
+<PageTitle>Either-or mode | KANAVRT</PageTitle>
 
 <ModesSideNavView></ModesSideNavView>
 
@@ -74,9 +74,9 @@
 	<article>
 		<h4>EITHER OR MODE</h4>
 
-		<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
-        
 		<section>
+			<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
+
 			<button style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="guess-button @guessButtonState(@guesses[index])" @onclick="() => updateViewer(guesses[index])">
 				@guesses[index]
 			</button>

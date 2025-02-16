@@ -5,7 +5,7 @@
 
 @inject SettingsModel model
 
-<PageTitle>Grid settings</PageTitle>
+<PageTitle>Grid settings | KANAVRT</PageTitle>
 
 <SettingsSideNavView></SettingsSideNavView>
 
@@ -26,23 +26,23 @@
 	<h4>KANA COUNT : @(model.characters.Count)</h4>
 	<section>
 		<table id="character-set-table">
-            @if (type == GraphCount.Monograph && !isDiacriticMonograph) {
+            @if (!isDigraph && !isDiacriticMonograph) {
                 <MonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></MonographTableView>
-			} else if (type == GraphCount.Monograph && isDiacriticMonograph) {
+			} else if (!isDigraph && isDiacriticMonograph) {
                 <DiacriticMonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></DiacriticMonographTableView>
-			} else if (type == GraphCount.Digraph && !isDiacriticDigraph) {
+			} else if (isDigraph && !isDiacriticDigraph) {
 				<DigraphTableView @bind-isDiacritic="isDiacriticDigraph" @bind-characterSet="model.characters"></DigraphTableView>
-			} else if (type == GraphCount.Digraph && isDiacriticDigraph) {
+			} else if (isDigraph && isDiacriticDigraph) {
 				<DiacriticDigraphTableView @bind-isDiacritic="isDiacriticDigraph" @bind-characterSet="model.characters"></DiacriticDigraphTableView>
             }
 		</table>
 
 		<div id="graph-type">
-			<InputRadioGroup @bind-Value="@(type)">
-				<InputRadio id="monograph-input" Value="GraphCount.Monograph" class="graph-input" style="display: none;" @onclick="() => isDiacriticDigraph = false" />
+			<InputRadioGroup @bind-Value="@(isDigraph)">
+				<InputRadio id="monograph-input" Value="false" class="graph-input" style="display: none;" @onclick="() => isDiacriticDigraph = false" />
 				<label class="graph-label" id="monograph-label" for="monograph-input">MONOGRAPHS</label>
-				<InputRadio Value="GraphCount.Digraph" id="digraph-input" class="graph-input" style="display: none;" @onclick="() => isDiacriticMonograph = false" />
-				<label class="graph-label" id="digraph-label" for="digraph-input">DIGRAPHS</label>
+				<InputRadio Value="true" id="digraph-toggle-input" class="graph-input" style="display: none;" @onclick="() => isDiacriticMonograph = false" />
+				<label class="graph-label" id="digraph-label" for="digraph-toggle-input">DIGRAPHS</label>
 			</InputRadioGroup>
 		</div>
 	</section>

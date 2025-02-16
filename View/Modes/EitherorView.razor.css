@@ -1,6 +1,10 @@
-﻿button.guess-button, button.guess-button-active {
+﻿section {
+    grid-template-rows: 2.5rem 2fr 1fr 2fr;
+    grid-template-columns: unset;
+}
+
+button.guess-button, button.guess-button-active {
     grid-column: 1 / -1;
-    grid-row: span 2;
     background-color: var(--light-gray);
     color: var(--black);
     font-size: 8rem;
@@ -26,7 +30,7 @@ button.guess-button-wrong {
     }
 }
 
-section > button.guess-button:first-child {
+section > button.guess-button:nth-child(2) {
     border-radius: 1rem 1rem 0 0;
 }
 
@@ -34,7 +38,7 @@ section > button.guess-button:last-child {
     border-radius: 0 0 1rem 1rem;
 }
 
-section > button.guess-button:first-child:hover {
+section > button.guess-button:nth-child(2):hover {
     animation-name: downwards;
     animation-duration: 200ms;
     animation-iteration-count: 1;

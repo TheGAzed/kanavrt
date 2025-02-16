@@ -59,6 +59,22 @@ a.side-link {
         font-weight: normal;
     }
 
+    a.side-link > img.active-side-icon {
+        display: none;
+    }
+
+a.side-link-active > img.active-side-icon {
+    display: unset;
+}
+
+a.side-link > img.default-side-icon {
+    display: unset;
+}
+
+a.side-link-active > img.default-side-icon {
+    display: none;
+}
+
 a.side-link-active {
     background-color: var(--white);
 }

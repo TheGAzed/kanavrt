@@ -52,6 +52,7 @@
     unicode-range: U+3040-309F;
     src: url(../font/Monomaniac_One/MonomaniacOne-Regular.ttf);
 }
+
 @font-face {
     font-family: 'Chokokutai';
     unicode-range: U+3040-309F;
@@ -183,7 +184,7 @@ section {
 
 @media screen and (max-width: 400px) {
     section {
-        width: 90%;
+        width: 80%;
     }
 }
 
@@ -195,12 +196,6 @@ section {
 
 @media screen and (max-height: 825px) {
     section {
-        height: 30rem;
-    }
-}
-
-@media screen and (max-height: 700px) {
-    section {
-        height: 25rem;
+        height: 90%;
     }
 }
