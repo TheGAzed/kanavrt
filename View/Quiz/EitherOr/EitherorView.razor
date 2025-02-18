@@ -1,4 +1,4 @@
-﻿@page "/modes/eitheror"
+﻿@page "/quiz/eitheror"
 
 @using kanavrt.Controller.Modes
 @using kanavrt.Model
@@ -11,7 +11,7 @@
 
 <PageTitle>Either-or mode | KANAVRT</PageTitle>
 
-<ModesSideNavView></ModesSideNavView>
+<QuizSideNavView></QuizSideNavView>
 
 @if (controller.isError) {
 	<ErrorView Message="@(controller.Error.Message)" Solution="@(controller.Error.Solution)" Value="@(controller.Error.Value)"></ErrorView>
@@ -88,5 +88,4 @@
 			</button>
 		</section>
 	</article>
-	
 }

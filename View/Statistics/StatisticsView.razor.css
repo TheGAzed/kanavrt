@@ -1,0 +1,118 @@
+﻿section {
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+}
+
+menu {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: unset;
+	padding: unset;
+}
+
+	menu.sub-statistics-menu {
+		margin-top: 0.5rem;
+	}
+
+li {
+	list-style-type: none;
+}
+
+label {
+	display: flex;
+	flex-direction: column;
+	height: 2.25rem;
+	overflow: hidden;
+}
+
+input:checked + label {
+	height: fit-content;
+}
+
+div.character-category > p {
+	background-color: var(--black);
+	color: var(--white);
+	height: 2.25rem;
+	margin: unset;
+	padding-left: 1rem;
+	line-height: 2.25rem;
+	user-select: none;
+}
+
+div.character-category {
+	height: 2.25rem;
+	display: flex;
+	flex-direction: row;
+}
+
+	div.character-category > p {
+		flex-grow: 1;
+	}
+
+div.character-statistic {
+	display: flex;
+	flex-direction: row;
+	margin-top: 0.5rem;
+	height: 2.25rem;
+}
+
+div.character-statistic-unset {
+	opacity: 50%;
+	filter: saturate(0);
+}
+
+p.character {
+	background-color: var(--black);
+	color: var(--white);
+	height: 2.25rem;
+	width: 4.5rem;
+	margin: unset;
+	text-align: center;
+	line-height: 2.25rem;
+	user-select: none;
+}
+
+div.progress-bar {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	background-color: var(--red);
+}
+
+	div.progress-bar > p.progress-bar-count:last-child {
+		margin-left: auto;
+	}
+
+p.progress-bar-count {
+	background-color: var(--light-gray);
+	color: var(--black);
+	height: 2.25rem;
+	min-width: 2.25rem;
+	margin: unset;
+	text-align: center;
+	line-height: 2.25rem;
+	user-select: none;
+}
+
+div.progress-bar-line {
+	background-color: var(--green);
+}
+
+div.dropdown-icon, div.dropdown-sub-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--dark-gray);
+	height: inherit;
+	width: 2.25rem;
+}
+
+div.dropdown-sub-icon {
+	width: 4.5rem;
+}
+
+div.dropdown-icon > img {
+	filter: invert(0%) sepia(2%) saturate(790%) hue-rotate(0deg) brightness(99%) contrast(80%);
+}
