@@ -5,9 +5,19 @@
 <ContactSideNavView></ContactSideNavView>
 
 <article>
-    <section>
-        <h1>Hello, world!</h1>
+	<h4>EMAIL FORM</h4>
 
-        Welcome to your new app.
-    </section>
+	<section>
+        <form action="https://formsubmit.co/6aee6ad595961ad71e50c6eb7116bbe1" method="POST">
+            <input type="text" name="name" required class="personal-data" id="name" placeholder="NAME">
+            <input type="text" name="email" required class="personal-data" id="mail" placeholder="EMAIL">
+            <input type="text" name="subject" class="personal-data" id="subject" placeholder="SUBJECT">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_autoresponse" value="Thank you for sending your form.">
+            <input type="hidden" name="_subject" value="New submission!">
+            <textarea id="subject" name="message" required placeholder="MESSAGE"></textarea>
+            <button id="submit-message">SUBMIT</button>
+		</form>
+	</section>
 </article>

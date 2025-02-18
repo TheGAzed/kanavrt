@@ -1,0 +1,50 @@
+﻿section, form {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    height: inherit;
+    gap: 1rem;
+}
+
+input.personal-data {
+    all: unset;
+    height: 3rem;
+    outline: 0.15rem solid var(--black);
+    outline-offset: -0.15rem;
+    padding-left: 1rem;
+}
+
+    textarea#subject {
+        all: unset;
+        flex-grow: 1;
+        outline: 0.15rem solid var(--black);
+        outline-offset: -0.15rem;
+        padding: 1em;
+    }
+
+        button#submit-message {
+            all: unset;
+            display: grid;
+            min-height: 3.5em;
+            width: 10em;
+            cursor: pointer;
+            background-color: var(--black);
+            text-align: center;
+            color: var(--white);
+            font-size: 0.75em;
+            border-radius: 0.75em;
+            align-content: center;
+            align-self: center;
+            user-select: none;
+        }
+
+            button#submit-message:active {
+                transform: scale(0.95);
+                background-color: #353535;
+            }
+
+            button#submit-message:hover {
+                background-color: #353535;
+            }

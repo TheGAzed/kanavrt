@@ -188,7 +188,7 @@ section {
     }
 }
 
-@media screen and (max-height: 950px) and (max-width: 900px) {
+@media screen and (max-height: 750px) and (max-width: 900px) {
     h4 {
         display: none;
     }
