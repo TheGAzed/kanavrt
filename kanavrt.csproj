@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Folder Include="wwwroot\img\svg\contact\" />
-  </ItemGroup>
-
-  <ItemGroup>
 	<None Include="wwwroot\css\mainnav.css" />
   </ItemGroup>
 

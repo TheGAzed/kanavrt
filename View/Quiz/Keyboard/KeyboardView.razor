@@ -9,6 +9,7 @@
 @inject KanaModel kanaModel
 @inject SettingsModel settingsModel
 @inject KeyboardModeController controller
+@inject IJSRuntime JS
 
 <PageTitle>Keyboard mode | KANAVRT</PageTitle>
 
@@ -18,12 +19,12 @@
 	<ErrorView Message="@(controller.Error.Message)" Solution="@(controller.Error.Solution)" Value="@(controller.Error.Value)"></ErrorView>
 } else {
 	@code {
-		bool isDigraph   = false;
-		bool isDiacritic = false;
+	bool isDigraph   = false;
+	bool isDiacritic = false;
 
-		Regex regex = new("([AIUEO])|([KSTNHMYRMCFGZDBPJ])(YA|YU|YO|[AIUEO])|([KSTNHMYRMCFGZDBPJ])([KSTNHMYRMCFGZDBPJ])(YA|YU|YO|[AIUEO])|([KSTNHMYRMCFGZDBPJ])([KSTNHMYRMCFGZDBPJ])|([KSTNHMYRMCFGZDBPJ])");
+	Regex regex = new("([AIUEO])|([KSTNHMYRMCFGZDBPJ])(YA|YU|YO|[AIUEO])|([KSTNHMYRMCFGZDBPJ])([KSTNHMYRMCFGZDBPJ])(YA|YU|YO|[AIUEO])|([KSTNHMYRMCFGZDBPJ])([KSTNHMYRMCFGZDBPJ])|([KSTNHMYRMCFGZDBPJ])");
 
-		Dictionary<string, string> lookupState = new() {
+	Dictionary<string, string> lookupState = new() {
 			{ "A" , "roman-character-default" }, { "I" , "roman-character-default" }, { "U" , "roman-character-default" }, { "E" , "roman-character-default" },
 			{ "O" , "roman-character-default" },
 
@@ -37,89 +38,107 @@
 			{ "P" , "roman-character-default" }, { "J" , "roman-character-default" },
 		};
 
-		HashSet<string> digraphSet        = new() { "YA", "YU", "YO", };
-		HashSet<string> diacriticGraphSet = new() { "G", "Z", "D", "B", "P", "J", };
+	HashSet<string> digraphSet        = new() { "YA", "YU", "YO", };
+	HashSet<string> diacriticGraphSet = new() { "G", "Z", "D", "B", "P", "J", };
+	HashSet<string> keyboardSet = new() { "A", "I", "U", "E", "O", "K", "S", "T", "N", "H", "M", "Y", "R", "W", "C", "F", "G", "Z", "D", "B", "P", "J" };
 
-		string FullLatin = "";
-		string PartiaLatin = "";
-		Task? main = null;
-		private ProgressBarView progressBar;
+	string FullLatin = "";
+	string PartiaLatin = "";
+	Task? main = null;
+	private ProgressBarView progressBar;
+	protected ElementReference section;
 
-		async Task checkClick(string character) {
-			if (main != null && !main.IsCompleted) return;
-			if (FullLatin.Contains(character[0])) return;
+	async Task checkClick(string character) {
+		if (main != null && !main.IsCompleted) return;
+		if (FullLatin.Contains(character[0])) return;
 
-			FullLatin += character;
-			PartiaLatin = FullLatin;
+		FullLatin += character;
+		PartiaLatin = FullLatin;
 
-			updateLookup(PartiaLatin);
+		updateLookup(PartiaLatin);
 
-			if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
-				progressBar.updateProgressBar(FullLatin);
-				if (!controller.IsCorrectWrapper(PartiaLatin)) FullLatin = kanaModel.lookup[controller.CorrectSyllable].Latin[0];
-				await Task.Delay(1000);
-			}
-
-			controller.UpdateWrapper(character);
-
-			if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
-				resetLookup(PartiaLatin);
-				resetLookup(FullLatin);
-				PartiaLatin = FullLatin = string.Empty;
-			}
+		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
+			progressBar.updateProgressBar(FullLatin);
+			if (!controller.IsCorrectWrapper(PartiaLatin)) FullLatin = kanaModel.lookup[controller.CorrectSyllable].Latin[0];
+			await Task.Delay(1000);
 		}
 
-		async Task updateViewer(string syllable) {
-			if (main != null && !main.IsCompleted) return;
+		controller.UpdateWrapper(character);
 
-			main = checkClick(syllable);
-			await main;
+		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
+			resetLookup(PartiaLatin);
+			resetLookup(FullLatin);
+			PartiaLatin = FullLatin = string.Empty;
 		}
+	}
 
-		async Task resetController() {
-			if (main != null) await main;
-			controller.Reset();
-		}
+	async Task updateViewer(string syllable) {
+		if (main != null && !main.IsCompleted) return;
 
-		void resetLookup(string latin) {
-			Match latinMatch = regex.Match(latin);
-			foreach (Group g in latinMatch.Groups) {
-				if (lookupState.ContainsKey(g.Value)) {
-					lookupState[g.Value] = "roman-character-default";
-				}
-			}
-		}
+		main = checkClick(syllable);
+		await main;
+	}
 
-		void updateLookup(string latin) {
-			string partial = latin.Remove(latin.Length - 1);
+	async Task resetController() {
+		if (main != null) await main;
+		controller.Reset();
+	}
 
-			resetLookup(partial);
-
-			Match latinlMatch = regex.Match(latin);
-			string characterState = string.Empty;
-			if (!controller.IsPartialWrapper(latin)) {
-				characterState = "roman-character-wrong";
-			} else if (controller.IsCorrectWrapper(latin)) {
-				characterState = "roman-character-correct";
-			} else {
-				characterState = "roman-character-partial";
-			}
-
-			foreach (Group g in latinlMatch.Groups) {
-				if (lookupState.ContainsKey(g.Value)) {
-					isDigraph = isDigraph || digraphSet.Contains(g.Value) ? true : false;
-					isDiacritic = isDiacritic || diacriticGraphSet.Contains(g.Value) ? true : false;
-
-					lookupState[g.Value] = characterState;
-				}
+	void resetLookup(string latin) {
+		Match latinMatch = regex.Match(latin);
+		foreach (Group g in latinMatch.Groups) {
+			if (lookupState.ContainsKey(g.Value)) {
+				lookupState[g.Value] = "roman-character-default";
 			}
 		}
 	}
 
+	void updateLookup(string latin) {
+		string partial = latin.Remove(latin.Length - 1);
+
+		resetLookup(partial);
+
+		Match latinlMatch = regex.Match(latin);
+		string characterState = string.Empty;
+		if (!controller.IsPartialWrapper(latin)) {
+			characterState = "roman-character-wrong";
+		} else if (controller.IsCorrectWrapper(latin)) {
+			characterState = "roman-character-correct";
+		} else {
+			characterState = "roman-character-partial";
+		}
+
+		foreach (Group g in latinlMatch.Groups) {
+			if (lookupState.ContainsKey(g.Value)) {
+				isDigraph = isDigraph || digraphSet.Contains(g.Value) ? true : false;
+				isDiacritic = isDiacritic || diacriticGraphSet.Contains(g.Value) ? true : false;
+
+				lookupState[g.Value] = characterState;
+			}
+		}
+	}
+	protected async override Task OnAfterRenderAsync(bool firstRender) {
+		if (firstRender) {
+			await JS.InvokeVoidAsync("SetFocusToElement", section);
+		}
+	}
+
+	protected async void HandleKeypress(KeyboardEventArgs input) {
+		if (main != null && !main.IsCompleted) return;
+
+		string setInput = input.Key.ToUpper();
+		if (keyboardSet.Contains(setInput)) {
+			main = checkClick(setInput);
+			await main;
+			StateHasChanged();
+		}
+	}
+}
+
 	<article>
 		<h4>KEYBOARD MODE</h4>
 
-		<section>
+		<section @ref="section" @onkeydown="HandleKeypress" tabindex="0">
 			<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
 
 			<p style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="japanese-character">@(controller.CorrectSyllable)</p>

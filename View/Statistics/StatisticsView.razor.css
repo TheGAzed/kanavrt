@@ -25,10 +25,15 @@ label {
 	flex-direction: column;
 	height: 2.25rem;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 input:checked + label {
 	height: fit-content;
+}
+
+input:checked + label > div > div > img {
+	transform: rotate(90deg);
 }
 
 div.character-category > p {
