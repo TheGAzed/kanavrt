@@ -316,3 +316,14 @@ div.right-progress {
 		font-size: 1rem;
 	}
 }
+
+@media screen and (max-height: 750px) {
+	section {
+		grid-template-rows: 2.5rem repeat(5, 1fr);
+	}
+
+	p.japanese-character {
+		grid-row: span 1;
+		font-size: 3em;
+	}
+}

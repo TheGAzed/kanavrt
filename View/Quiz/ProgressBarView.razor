@@ -1,5 +1,7 @@
 ﻿@using kanavrt.Controller.Modes
 
+@inject IJSRuntime JS
+
 @code {
 	[Parameter]
 	public AbstractModeController controller { get; set; }
@@ -9,6 +11,8 @@
 
 	double leftBar = 0;
 	double rightBar = 0;
+
+	bool isReset = false;
 
 	public void updateProgressBar(string latin) {
 		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
@@ -45,6 +49,6 @@
 	</label>
 
 	<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
-		<div class="right-progress" style="width: @(rightBar)%;"></div>
+        <div class="right-progress" style="width: @(rightBar)%;"></div>
 	</div>
 </div>
