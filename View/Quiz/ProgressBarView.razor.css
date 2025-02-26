@@ -87,3 +87,13 @@ div.left-progress {
 div.right-progress {
     background-color: var(--green);
 }
+
+small.progress-count {
+    height: inherit;
+    min-width: 2.1rem;
+    line-height: 2.1rem;
+    text-align: center;
+    font-size: 1rem;
+    background-color: var(--dark-gray);
+    color: var(--white);
+}

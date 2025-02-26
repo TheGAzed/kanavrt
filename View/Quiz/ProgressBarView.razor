@@ -52,7 +52,8 @@
 <div class="info-bar">
 	<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
 		<div class="left-progress" style="width: @(leftBar)%; @(transition)" @ref="@leftBarDiv"></div>
-	</div>
+        <small class="progress-count">@(controller.WrongGuesses)</small>
+    </div>
 
 	<input type="button" class="bar-button" name="reset-button" />
 	<label class="bar-button" for="reset-button" @onclick="TriggerReset">
@@ -60,6 +61,7 @@
 	</label>
 
 	<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
+		<small class="progress-count">@(controller.CorrectGuesses)</small>
 		<div class="right-progress" style="width: @(rightBar)%; @(transition)" @ref="@rightBarDiv"></div>
 	</div>
 </div>
