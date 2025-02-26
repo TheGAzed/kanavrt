@@ -36,10 +36,7 @@ li.contact-list-element {
 	list-style: none;
 	display: flex;
 	flex-direction: row;
-	height: 3rem;
-}
-
-li#contact-address {
+	height: fit-content;
 	flex-grow: 1;
 }
 
@@ -66,16 +63,26 @@ p {
 }
 
 @media screen and (max-width: 650px) {
+	section {
+		display: flex;
+		flex-direction: column;
+	}
+
 	div#contact-logo {
 		display: none;
 	}
 
 	iframe#contact-map {
-		grid-row: span 3;
+		flex-grow: 1;
 	}
 
 	ul#contact-list {
 		grid-row: span 3;
 		grid-column: span 5;
+	}
+
+	p {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 }

@@ -185,7 +185,7 @@ section {
 
 @media screen and (max-width: 400px) {
     section {
-        width: 90%;
+        width: 90vw;
     }
 }
 
@@ -197,6 +197,6 @@ section {
 
 @media screen and (max-height: 825px) {
     section {
-        height: 90%;
+        height: 60vh;
     }
 }

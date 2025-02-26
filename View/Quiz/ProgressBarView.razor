@@ -9,8 +9,13 @@
 	[Parameter]
 	public EventCallback<bool> controllerChanged { get; set; }
 
+	private ElementReference rightBarDiv;
+	private ElementReference leftBarDiv;
+
 	double leftBar = 0;
 	double rightBar = 0;
+
+	string transition = "transition: width 1500ms ease-in-out;";
 
 	bool isReset = false;
 
@@ -26,7 +31,13 @@
 	}
 
 	private void resetProgressBar() {
+		transition = "transition: none;";
+
 		leftBar = rightBar = 0;
+
+		Task.Delay(50).ContinueWith(_ => {
+			transition = "transition: width 1500ms ease-in-out;";
+		});
 	}
 
 	[Parameter]
@@ -40,7 +51,7 @@
 
 <div class="info-bar">
 	<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
-		<div class="left-progress" style="width: @(leftBar)%;"></div>
+		<div class="left-progress" style="width: @(leftBar)%; @(transition)" @ref="@leftBarDiv"></div>
 	</div>
 
 	<input type="button" class="bar-button" name="reset-button" />
@@ -49,6 +60,6 @@
 	</label>
 
 	<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
-        <div class="right-progress" style="width: @(rightBar)%;"></div>
+		<div class="right-progress" style="width: @(rightBar)%; @(transition)" @ref="@rightBarDiv"></div>
 	</div>
 </div>
