@@ -9,15 +9,11 @@
 	[Parameter]
 	public EventCallback<bool> controllerChanged { get; set; }
 
-	private ElementReference rightBarDiv;
-	private ElementReference leftBarDiv;
-
 	double leftBar = 0;
 	double rightBar = 0;
 
 	string transition = "transition: width 1500ms ease-in-out;";
 
-	bool isReset = false;
 
 	public void updateProgressBar(string latin) {
 		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
@@ -51,7 +47,7 @@
 
 <div class="info-bar">
 	<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
-		<div class="left-progress" style="width: @(leftBar)%; @(transition)" @ref="@leftBarDiv"></div>
+		<div class="left-progress" style="width: calc(@(leftBar)% - 1.05rem); @(transition)"></div>
         <small class="progress-count">@(controller.WrongGuesses)</small>
     </div>
 
@@ -62,6 +58,6 @@
 
 	<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
 		<small class="progress-count">@(controller.CorrectGuesses)</small>
-		<div class="right-progress" style="width: @(rightBar)%; @(transition)" @ref="@rightBarDiv"></div>
+		<div class="right-progress" style="width: calc(@(rightBar)% - 1.05rem); @(transition)"></div>
 	</div>
 </div>
