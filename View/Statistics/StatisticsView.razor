@@ -38,71 +38,37 @@
 						<p>MONOGRAPHS</p>
 					</div>
 
-					<menu class="sub-statistics-menu">
-						<li>
-							<input type="checkbox" name="vowels-checkbox" id="vowels-checkbox" style="display: none;">
-							<label for="vowels-checkbox">
-								<div class="character-category">
-									<div class="dropdown-sub-icon">
-										<img src="img/svg/statistics/caret-right-fill.svg" alt="" width="16" height="16">
-									</div>
+					@foreach (string kana in monographTableModel.VowelsSet) {
+						int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
+						double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
 
-									<p>VOWELS</p>
+						<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
+							<p class="character">@(kana)</p>
+							<div class="progress-bar">
+								<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
+								<div class="progress-bar-line" style="width: @(bar)%;"></div>
+								<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
+							</div>
+						</div>
+					}
+
+					@foreach (HashSet<string> set in monographTableModel.ConsonantsLineSetLookup) {
+						@foreach (string kana in set) {
+							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
+							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
+
+							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
+								<p class="character">@(kana)</p>
+								<div class="progress-bar">
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
+									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
 								</div>
-
-								@foreach (string kana in monographTableModel.VowelsSet) {
-									int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-									double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
-
-									<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
-										<p class="character">@(kana)</p>
-										<div class="progress-bar">
-											<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-											<div class="progress-bar-line" style="width: @(bar)%;"></div>
-											<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
-										</div>
-									</div>
-								}
-
-							</label>
-						</li>
-
-						@{
-							index = 0;
-							lineName = ["k-line", "s-line", "t-line", "n-line", "h-line", "m-line", "y-line", "r-line", "w-line", "n"];
-
-							foreach (HashSet<string> set in monographTableModel.ConsonantsLineSetLookup) {
-								<li>
-									<input type="checkbox" name="@(lineName[index])-monograph-checkbox" id="@(lineName[index])-monograph-checkbox" style="display: none;">
-									<label for="@(lineName[index])-monograph-checkbox">
-										<div class="character-category">
-											<div class="dropdown-sub-icon">
-												<img src="img/svg/statistics/caret-right-fill.svg" alt="" width="16" height="16">
-											</div>
-
-											<p>@(lineName[index].ToUpper())</p>
-										</div>
-
-										@foreach (string kana in set) {
-											int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-											double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
-
-											<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
-												<p class="character">@(kana)</p>
-												<div class="progress-bar">
-													<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-													<div class="progress-bar-line" style="width: @(bar)%;"></div>
-													<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
-												</div>
-											</div>
-										}
-										
-									</label>
-								</li>
-								index++;
-							}
+							</div>
 						}
-					</menu>
+
+						index++;
+					}
 				</label>
 			</li>
 
@@ -117,43 +83,22 @@
 						<p>DIGRAPHS</p>
 					</div>
 
-					<menu class="sub-statistics-menu">
-						@{
-							index = 0;
-							lineName = ["k-line", "s-line", "t-line", "n-line", "h-line", "m-line",  "r-line" ];
+					@foreach (HashSet<string> set in digraphTableModel.ConsonantsLineSetLookup) {
+						@foreach (string kana in set) {
+							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
+							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
 
-							foreach (HashSet<string> set in digraphTableModel.ConsonantsLineSetLookup) {
-								<li>
-									<input type="checkbox" name="@(lineName[index])-digraph-checkbox" id="@(lineName[index])-digraph-checkbox" style="display: none;">
-									<label for="@(lineName[index])-digraph-checkbox">
-										<div class="character-category">
-											<div class="dropdown-sub-icon">
-												<img src="img/svg/statistics/caret-right-fill.svg" alt="" width="16" height="16">
-											</div>
-
-											<p>@(lineName[index].ToUpper())</p>
-										</div>
-
-										@foreach (string kana in set) {
-											int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-											double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
-
-											<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
-												<p class="character">@(kana)</p>
-												<div class="progress-bar">
-													<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-													<div class="progress-bar-line" style="width: @(bar)%;"></div>
-													<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
-												</div>
-											</div>
-										}
-
-									</label>
-								</li>
-								index++;
-							}
+							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
+								<p class="character">@(kana)</p>
+								<div class="progress-bar">
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
+									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
+								</div>
+							</div>
 						}
-					</menu>
+					}
+
 				</label>
 			</li>
 
@@ -168,43 +113,21 @@
 						<p>DIACRITIC MONOGRAPHS</p>
 					</div>
 
-					<menu class="sub-statistics-menu">
-						@{
-							index = 0;
-							lineName = ["g-line", "z-line", "d-line", "b-line", "p-line" ];
+					@foreach (HashSet<string> set in diacriticMonographTableModel.ConsonantsLineSetLookup) {
+						@foreach (string kana in set) {
+							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
+							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
 
-							foreach (HashSet<string> set in diacriticMonographTableModel.ConsonantsLineSetLookup) {
-								<li>
-									<input type="checkbox" name="@(lineName[index])-diacritic-monograph-checkbox" id="@(lineName[index])-diacritic-monograph-checkbox" style="display: none;">
-									<label for="@(lineName[index])-diacritic-monograph-checkbox">
-										<div class="character-category">
-											<div class="dropdown-sub-icon">
-												<img src="img/svg/statistics/caret-right-fill.svg" alt="" width="16" height="16">
-											</div>
-
-											<p>@(lineName[index].ToUpper())</p>
-										</div>
-
-										@foreach (string kana in set) {
-											int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-											double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
-
-											<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
-												<p class="character">@(kana)</p>
-												<div class="progress-bar">
-													<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-													<div class="progress-bar-line" style="width: @(bar)%;"></div>
-													<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
-												</div>
-											</div>
-										}
-
-									</label>
-								</li>
-								index++;
-							}
+							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
+								<p class="character">@(kana)</p>
+								<div class="progress-bar">
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
+									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
+								</div>
+							</div>
 						}
-					</menu>
+					}
 				</label>
 			</li>
 
@@ -219,43 +142,21 @@
 						<p>DIACRITIC DIGRAPHS</p>
 					</div>
 
-                    <menu class="sub-statistics-menu">
-                        @{
-                            index = 0;
-                            lineName = ["g-line", "z-line", "d-line", "b-line", "p-line"];
+					@foreach (HashSet<string> set in diacriticDigraphTableModel.ConsonantsLineSetLookup) {
+						@foreach (string kana in set) {
+							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
+							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
 
-                            foreach (HashSet<string> set in diacriticDigraphTableModel.ConsonantsLineSetLookup) {
-                                <li>
-                                    <input type="checkbox" name="@(lineName[index])-diacritic-digraph-checkbox" id="@(lineName[index])-diacritic-digraph-checkbox" style="display: none;">
-                                    <label for="@(lineName[index])-diacritic-digraph-checkbox">
-                                        <div class="character-category">
-                                            <div class="dropdown-sub-icon">
-                                                <img src="img/svg/statistics/caret-right-fill.svg" alt="" width="16" height="16">
-                                            </div>
-
-                                            <p>@(lineName[index].ToUpper())</p>
-                                        </div>
-
-                                        @foreach (string kana in set) {
-                                            int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-                                            double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
-
-                                            <div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
-                                                <p class="character">@(kana)</p>
-                                                <div class="progress-bar">
-                                                    <p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-                                                    <div class="progress-bar-line" style="width: @(bar)%;"></div>
-                                                    <p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
-                                                </div>
-                                            </div>
-                                        }
-
-                                    </label>
-                                </li>
-                                index++;
-                            }
-                        }
-                    </menu>
+							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
+								<p class="character">@(kana)</p>
+								<div class="progress-bar">
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
+									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
+								</div>
+							</div>
+						}
+					}
 				</label>
 			</li>
 		</menu>
