@@ -57,7 +57,7 @@
 
 		updateLookup(PartiaLatin);
 
-		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
+		if (controller.IsPartial(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
 			progressBar.updateProgressBar(FullLatin);
 			if (!controller.IsCorrect(PartiaLatin)) FullLatin = kanaModel.lookup[controller.CorrectSyllable].Latin[0];
 			await Task.Delay(1000);
@@ -65,7 +65,7 @@
 
 		controller.Update(character);
 
-		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
+		if (controller.IsPartial(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
 			resetLookup(PartiaLatin);
 			resetLookup(FullLatin);
 			PartiaLatin = FullLatin = string.Empty;
@@ -100,7 +100,7 @@
 
 		Match latinlMatch = regex.Match(latin);
 		string characterState = string.Empty;
-		if (!controller.IsPartialWrapper(latin)) {
+		if (!controller.IsPartial(latin)) {
 			characterState = "roman-character-wrong";
 		} else if (controller.IsCorrect(latin)) {
 			characterState = "roman-character-correct";

@@ -7,13 +7,13 @@ namespace kanavrt.Controller.Quiz {
 	public class KeyboardController(KanaModel kanaModel, StatisticsModel statisticsModel, SettingsModel settingsModel) : AbstractQuizController(kanaModel, statisticsModel, settingsModel, 1) {
 		public StringBuilder PartialGuess { get; set; } = new();
 
-		public bool IsPartialWrapper(string latin) {
+		public bool IsPartial(string latin) {
 			if (isError) throw new("Can't call function if controller Error.");
 
-			return IsPartial(latin);
+			return IsPartial_(latin);
 		}
 
-		protected bool IsPartial(string latin) {
+		protected bool IsPartial_(string latin) {
 			string[] latinForms = kanaModel.lookup[CorrectSyllable].Latin;
 
 			foreach (string latinForm in latinForms) {
@@ -29,7 +29,7 @@ namespace kanavrt.Controller.Quiz {
 			PartialGuess.Append(syllable);
 			string partial = PartialGuess.ToString();
 
-			if (IsPartial(partial) == IsCorrect_(partial)) {
+			if (IsPartial_(partial) == IsCorrect_(partial)) {
 				if (IsCorrect_(partial)) { 
 					statisticsModel.lookup[CorrectSyllable].Corrects++;
 					CorrectGuesses++;
