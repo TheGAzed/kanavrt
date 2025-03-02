@@ -3,12 +3,12 @@
 @using kanavrt.Model
 @using kanavrt.Model.Statistics
 @using kanavrt.Model.Settings
-@using kanavrt.Controller.Modes
+@using kanavrt.Controller.Quiz
 @using System.Text.RegularExpressions
 
 @inject KanaModel kanaModel
 @inject SettingsModel settingsModel
-@inject KeyboardModeController controller
+@inject KeyboardController controller
 @inject IJSRuntime JS
 
 <PageTitle>Keyboard mode | KANAVRT</PageTitle>
@@ -57,15 +57,15 @@
 
 		updateLookup(PartiaLatin);
 
-		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
+		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
 			progressBar.updateProgressBar(FullLatin);
-			if (!controller.IsCorrectWrapper(PartiaLatin)) FullLatin = kanaModel.lookup[controller.CorrectSyllable].Latin[0];
+			if (!controller.IsCorrect(PartiaLatin)) FullLatin = kanaModel.lookup[controller.CorrectSyllable].Latin[0];
 			await Task.Delay(1000);
 		}
 
-		controller.UpdateWrapper(character);
+		controller.Update(character);
 
-		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrectWrapper(PartiaLatin)) {
+		if (controller.IsPartialWrapper(PartiaLatin) == controller.IsCorrect(PartiaLatin)) {
 			resetLookup(PartiaLatin);
 			resetLookup(FullLatin);
 			PartiaLatin = FullLatin = string.Empty;
@@ -81,7 +81,7 @@
 
 	async Task resetController() {
 		if (main != null) await main;
-		controller.Reset();
+		controller.Reset_();
 	}
 
 	void resetLookup(string latin) {
@@ -102,7 +102,7 @@
 		string characterState = string.Empty;
 		if (!controller.IsPartialWrapper(latin)) {
 			characterState = "roman-character-wrong";
-		} else if (controller.IsCorrectWrapper(latin)) {
+		} else if (controller.IsCorrect(latin)) {
 			characterState = "roman-character-correct";
 		} else {
 			characterState = "roman-character-partial";

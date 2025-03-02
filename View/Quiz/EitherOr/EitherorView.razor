@@ -1,13 +1,13 @@
 ﻿@page "/quiz/eitheror"
 
-@using kanavrt.Controller.Modes
+@using kanavrt.Controller.Quiz
 @using kanavrt.Model
 @using kanavrt.Model.Statistics
 @using kanavrt.Model.Settings
 
 @inject KanaModel kanaModel
 @inject SettingsModel settingsModel
-@inject EitherOrModeController controller
+@inject EitherOrController controller
 
 <PageTitle>Either-or mode | KANAVRT</PageTitle>
 
@@ -30,7 +30,7 @@
 			progressBar.updateProgressBar(ClickedLatin);
 
 			await Task.Delay(1000);
-			controller.UpdateWrapper(syllable);
+			controller.Update(syllable);
 
 			index = new Random().Next(0, 2);
 		}
@@ -44,7 +44,7 @@
 
 		async Task resetController() {
 			if (main != null) await main;
-			controller.Reset();
+			controller.Reset_();
 		}
 	}
 
@@ -57,7 +57,7 @@
 	string guessButtonState(string syllable) {
 		string latin = kanaModel.lookup[syllable].Latin[0];
 		if (main != null && !main.IsCompleted) {
-			return controller.IsCorrectWrapper(latin) ? "guess-button-correct" : "guess-button-wrong";
+			return controller.IsCorrect(latin) ? "guess-button-correct" : "guess-button-wrong";
 		}
 
 		return "";
@@ -65,7 +65,7 @@
 
 	string latinGuessState() {
 		if (main != null && !main.IsCompleted) {
-			return controller.IsCorrectWrapper(ClickedLatin) ? "latin-guess-correct" : "latin-guess-wrong";
+			return controller.IsCorrect(ClickedLatin) ? "latin-guess-correct" : "latin-guess-wrong";
 		}
 
 		return "";

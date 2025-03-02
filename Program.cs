@@ -1,5 +1,5 @@
 using kanavrt;
-using kanavrt.Controller.Modes;
+using kanavrt.Controller.Quiz;
 using kanavrt.Model;
 using kanavrt.Model.Settings;
 using kanavrt.Model.Statistics;
@@ -16,7 +16,7 @@ builder.Services.AddScoped<StatisticsModel>();
 builder.Services.AddScoped<SettingsModel>();
 
 builder.Services.AddTransient<KanaModel>();
-builder.Services.AddTransient<EitherOrModeController>();
-builder.Services.AddTransient<KeyboardModeController>();
+builder.Services.AddTransient<EitherOrController>();
+builder.Services.AddTransient<KeyboardController>();
 
 await builder.Build().RunAsync();

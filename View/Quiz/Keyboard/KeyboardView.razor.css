@@ -1,5 +1,7 @@
 ﻿section {
 	grid-template-rows: 2.5rem repeat(6, 1fr);
+	border: none;
+	outline: none;
 }
 
 p.japanese-character {

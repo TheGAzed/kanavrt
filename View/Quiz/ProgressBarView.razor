@@ -1,10 +1,10 @@
-﻿@using kanavrt.Controller.Modes
+﻿@using kanavrt.Controller.Quiz
 
 @inject IJSRuntime JS
 
 @code {
 	[Parameter]
-	public AbstractModeController controller { get; set; }
+	public AbstractQuizController controller { get; set; }
 
 	[Parameter]
 	public EventCallback<bool> controllerChanged { get; set; }
@@ -18,7 +18,7 @@
 	public void updateProgressBar(string latin) {
 		int correct = controller.CorrectGuesses, wrong = controller.WrongGuesses;
 
-		if (controller.IsCorrectWrapper(latin)) correct++;
+		if (controller.IsCorrect(latin)) correct++;
 		else wrong++;
 
 		double sum = correct + wrong;
