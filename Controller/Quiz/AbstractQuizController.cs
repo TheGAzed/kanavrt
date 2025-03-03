@@ -16,7 +16,7 @@ namespace kanavrt.Controller.Quiz {
 		/// </summary>
 		public int GuessCount { get; } = 1;
 		/// <summary>
-		/// The correct syllable during current move.
+		/// The correct input during current move.
 		/// </summary>
 		public string CorrectSyllable { get; set; } = string.Empty;
 		/// <summary>
@@ -47,7 +47,7 @@ namespace kanavrt.Controller.Quiz {
 
 			if (guessCount > settingsModel.characters.Count) { // kanaModel must have at least guessCount characters to work properly
 				isError = true;
-				Error = new("Available syllable count is less than " + guessCount + '.', "Increase syllable count in settings to " + guessCount + " or more.", 1);
+				Error = new("Available input count is less than " + guessCount + '.', "Increase input count in settings to " + guessCount + " or more.", 1);
 				return;
 			}
 
@@ -88,17 +88,17 @@ namespace kanavrt.Controller.Quiz {
 			CorrectSyllable = temp;
 		}
 
-		public void Update(string syllable) {
+		public void Update(string input) {
 			if (isError) throw new("Can't call function if controller Error.");
-			Update_(syllable);
+			Update_(input);
 		}
 
 		/// <summary>
 		/// Updates the necesarry mode variables and calls NextMove_.
 		/// </summary>
-		/// <param name="syllable"></param>
-		protected virtual void Update_(string syllable) {
-			if (CorrectSyllable.Equals(syllable)) {
+		/// <param name="input"></param>
+		protected virtual void Update_(string input) {
+			if (CorrectSyllable.Equals(input)) {
 				CorrectGuesses++;
 				statisticsModel.lookup[CorrectSyllable].Corrects++; 
 			} 
@@ -117,10 +117,10 @@ namespace kanavrt.Controller.Quiz {
 		}
 
 		/// <summary>
-		/// Checks if current latin syllable is correct.
+		/// Checks if current latin input is correct.
 		/// </summary>
-		/// <param name="latin">String syllable to check.</param>
-		/// <returns>true, if latin syllable is correct, false otherwise</returns>
+		/// <param name="latin">String input to check.</param>
+		/// <returns>true, if latin input is correct, false otherwise</returns>
 		protected virtual bool IsCorrect_(string latin) {
 			string[] latinForms = kanaModel.lookup[CorrectSyllable].Latin;
 			return latinForms.Contains(latin);

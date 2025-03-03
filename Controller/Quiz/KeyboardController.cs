@@ -25,8 +25,8 @@ namespace kanavrt.Controller.Quiz {
 			return false;
 		}
 
-		protected override void Update_(string syllable) {
-			PartialGuess.Append(syllable);
+		protected override void Update_(string input) {
+			PartialGuess.Append(input);
 			string partial = PartialGuess.ToString();
 
 			if (IsPartial_(partial) == IsCorrect_(partial)) {
