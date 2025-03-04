@@ -22,8 +22,8 @@
 		else wrong++;
 
 		double sum = correct + wrong;
-		rightBar = (correct / sum) * 100;
-		leftBar = (wrong / sum) * 100;
+		rightBar = correct / sum;
+		leftBar = wrong / sum;
 	}
 
 	private void resetProgressBar() {
@@ -47,7 +47,7 @@
 
 <div class="info-bar">
 	<div class="progress-bar" title="WRONG GUESSES: @(controller.WrongGuesses)">
-		<div class="left-progress" style="width: calc(@(leftBar)% - 1.05rem); @(transition)"></div>
+		<div class="left-progress" style="width: calc((100% - 2.1rem) * @(leftBar)); @(transition)"></div>
         <small class="progress-count">@(controller.WrongGuesses)</small>
     </div>
 
@@ -58,6 +58,6 @@
 
 	<div class="progress-bar" title="CORRECT GUESSES: @(controller.CorrectGuesses)">
 		<small class="progress-count">@(controller.CorrectGuesses)</small>
-		<div class="right-progress" style="width: calc(@(rightBar)% - 1.05rem); @(transition)"></div>
+		<div class="right-progress" style="width:calc((100% - 2.1rem) * @(rightBar)); @(transition)"></div>
 	</div>
 </div>
