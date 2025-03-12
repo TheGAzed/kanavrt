@@ -93,7 +93,7 @@ a, .btn-link {
 
     a:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 2px #005fcc; /* Custom focus style */
+        box-shadow: none;
     }
 
 article {
