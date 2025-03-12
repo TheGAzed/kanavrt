@@ -7,7 +7,7 @@ button.guess-button, button.guess-button-active {
     grid-column: 1 / -1;
     background-color: var(--light-gray);
     color: var(--black);
-    font-size: 8rem;
+    font-size: 6rem;
     border: unset;
     cursor: pointer;
 }

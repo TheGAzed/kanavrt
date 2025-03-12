@@ -14,7 +14,7 @@ p.japanese-character {
 	background-color: var(--light-gray);
 	color: var(--black);
 	border-radius: 1rem;
-	font-size: 8rem;
+	font-size: 6rem;
 }
 
 p.latin-guess {
