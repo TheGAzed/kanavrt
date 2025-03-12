@@ -91,6 +91,11 @@ a, .btn-link {
     height: inherit;
 }
 
+    a:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px #005fcc; /* Custom focus style */
+    }
+
 article {
     flex-grow: 1;
     display: flex;
