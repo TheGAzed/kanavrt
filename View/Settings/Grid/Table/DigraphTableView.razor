@@ -3,6 +3,8 @@
 
 @inherits AbstractTableView
 
+@inject KanaModel kanaModel
+
 @code {
 	AbstractTableModel letters = new DigraphTableModel();
 }
@@ -19,17 +21,17 @@
 
 		<td class="character-data vowel-data" id="YA-line-toggle-data">
 			<InputCheckbox Value='@lineVowelsState(letters, 0)' ValueExpression='() => letters.VowelsLineLookup[0]' ValueChanged='(bool c) => toggleVowelsLine(letters, c, 0)' id='YA-line-toggle-input' class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="YA-line-toggle-input" id="YA-line-toggle-label" class="toggle-label special-toggle-label">YA</label>
+			<label for="YA-line-toggle-input" id="YA-line-toggle-label" class="toggle-label special-toggle-label" title="toggle YA-line">YA</label>
 		</td>
 
 		<td class="character-data vowel-data" id="YU-line-toggle-data">
 			<InputCheckbox Value='@lineVowelsState(letters, 1)' ValueExpression='() => letters.VowelsLineLookup[1]' ValueChanged='(bool c) => toggleVowelsLine(letters, c, 1)' id='YU-line-toggle-input' class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="YU-line-toggle-input" id="YU-line-toggle-label" class="toggle-label special-toggle-label">YU</label>
+			<label for="YU-line-toggle-input" id="YU-line-toggle-label" class="toggle-label special-toggle-label" title="toggle YU-line">YU</label>
 		</td>
 
 		<td class="character-data vowel-data" id="YO-line-toggle-data">
 			<InputCheckbox Value='@lineVowelsState(letters, 2)' ValueExpression='() => letters.VowelsLineLookup[2]' ValueChanged='(bool c) => toggleVowelsLine(letters, c, 2)' id='YO-line-toggle-input' class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="YO-line-toggle-input" id="YO-line-toggle-label" class="toggle-label special-toggle-label">YO</label>
+			<label for="YO-line-toggle-input" id="YO-line-toggle-label" class="toggle-label special-toggle-label" title="toggle YO-line">YO</label>
 		</td>
 	</tr>
 
@@ -43,7 +45,7 @@
 	<tr id="character-line-three" class="character-line">
 		<td class="character-data" id="K-line-toggle-data">
 			<InputCheckbox Value='@lineConsonantsState(letters, 0)' ValueExpression='() => letters.ConsonantsLineLookup[0]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 0)' id="K-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="K-line-toggle-input" id="K-line-toggle-label" class="toggle-label special-toggle-label">K</label>
+			<label for="K-line-toggle-input" id="K-line-toggle-label" class="toggle-label special-toggle-label" title="toggle K-line">K</label>
 		</td>
 
 
@@ -55,7 +57,7 @@
 				int i = index;
 				<td class="character-data character" id="@(kLine[i])-toggle-data">
 					<input type="checkbox" name="@(kLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(kLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-					<label for="@(kLine[i])-toggle-label" id="@(kLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(kLine[i])-toggle-label" id="@(kLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
 				</td>
 
 				index++;
@@ -66,7 +68,7 @@
 	<tr id="character-line-four" class="character-line">
 		<td class="character-data" id="S-line-toggle-data">
 			<InputCheckbox Value='@lineConsonantsState(letters, 1)' ValueExpression='() => letters.ConsonantsLineLookup[1]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 1)' id="S-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="S-line-toggle-input" id="S-line-toggle-label" class="toggle-label special-toggle-label">S</label>
+			<label for="S-line-toggle-input" id="S-line-toggle-label" class="toggle-label special-toggle-label" title="toggle S-line">S</label>
 		</td>
 
 
@@ -78,7 +80,7 @@
 				int i = index;
 				<td class="character-data character" id="@(sLine[i])-toggle-data">
 					<input type="checkbox" name="@(sLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(sLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-					<label for="@(sLine[i])-toggle-label" id="@(sLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(sLine[i])-toggle-label" id="@(sLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
 				</td>
 
 				index++;
@@ -89,7 +91,7 @@
 	<tr id="character-line-five" class="character-line">
 		<td class="character-data" id="T-line-toggle-data">
 			<InputCheckbox Value='@lineConsonantsState(letters, 2)' ValueExpression='() => letters.ConsonantsLineLookup[2]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 2)' id="T-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="T-line-toggle-input" id="T-line-toggle-label" class="toggle-label special-toggle-label">T</label>
+			<label for="T-line-toggle-input" id="T-line-toggle-label" class="toggle-label special-toggle-label" title="toggle T-line">T</label>
 		</td>
 
 
@@ -101,7 +103,7 @@
 				int i = index;
 				<td class="character-data character" id="@(tLine[i])-toggle-data">
 					<input type="checkbox" name="@(tLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(tLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-					<label for="@(tLine[i])-toggle-label" id="@(tLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(tLine[i])-toggle-label" id="@(tLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
 				</td>
 
 				index++;
@@ -112,7 +114,7 @@
 	<tr id="character-line-six" class="character-line">
 		<td class="character-data" id="N-line-toggle-data">
 			<InputCheckbox Value='@lineConsonantsState(letters, 3)' ValueExpression='() => letters.ConsonantsLineLookup[3]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 3)' id="N-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="N-line-toggle-input" id="N-line-toggle-label" class="toggle-label special-toggle-label">N</label>
+			<label for="N-line-toggle-input" id="N-line-toggle-label" class="toggle-label special-toggle-label" title="toggle N-line">N</label>
 		</td>
 
 
@@ -124,7 +126,7 @@
 				int i = index;
 				<td class="character-data character" id="@(nLine[i])-toggle-data">
 					<input type="checkbox" name="@(nLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(nLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-					<label for="@(nLine[i])-toggle-label" id="@(nLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(nLine[i])-toggle-label" id="@(nLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
 				</td>
 
 				index++;
@@ -135,7 +137,7 @@
 	<tr id="character-line-seven" class="character-line">
 		<td class="character-data" id="H-line-toggle-data">
 			<InputCheckbox Value='@lineConsonantsState(letters, 4)' ValueExpression='() => letters.ConsonantsLineLookup[4]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 4)' id="H-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-			<label for="H-line-toggle-input" id="H-line-toggle-label" class="toggle-label special-toggle-label">H</label>
+			<label for="H-line-toggle-input" id="H-line-toggle-label" class="toggle-label special-toggle-label" title="toggle H-line">H</label>
 		</td>
 
 
@@ -147,7 +149,7 @@
 				int i = index;
 				<td class="character-data character" id="@(hLine[i])-toggle-data">
 					<input type="checkbox" name="@(hLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(hLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-					<label for="@(hLine[i])-toggle-label" id="@(hLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(hLine[i])-toggle-label" id="@(hLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
 				</td>
 
 				index++;
@@ -162,7 +164,7 @@
 	<tr id="character-line-nine" class="character-line">
         <td class="character-data" id="M-line-toggle-data">
             <InputCheckbox Value='@lineConsonantsState(letters, 5)' ValueExpression='() => letters.ConsonantsLineLookup[5]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 5)' id="M-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-            <label for="M-line-toggle-input" id="M-line-toggle-label" class="toggle-label special-toggle-label">M</label>
+            <label for="M-line-toggle-input" id="M-line-toggle-label" class="toggle-label special-toggle-label" title="toggle M-line">M</label>
         </td>
 
 
@@ -174,7 +176,7 @@
                 int i = index;
                 <td class="character-data character" id="@(mLine[i])-toggle-data">
                     <input type="checkbox" name="@(mLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(mLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-                    <label for="@(mLine[i])-toggle-label" id="@(mLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(mLine[i])-toggle-label" id="@(mLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
                 </td>
 
                 index++;
@@ -189,7 +191,7 @@
 	<tr id="character-line-eleven" class="character-line">
         <td class="character-data" id="R-line-toggle-data">
             <InputCheckbox Value='@lineConsonantsState(letters, 6)' ValueExpression='() => letters.ConsonantsLineLookup[6]' ValueChanged='(bool c) => toggleConsonantsLine(letters, c, 6)' id="R-line-toggle-input" class="toggle-input special-toggle-input" style="display: none;" />
-            <label for="R-line-toggle-input" id="R-line-toggle-label" class="toggle-label special-toggle-label">R</label>
+            <label for="R-line-toggle-input" id="R-line-toggle-label" class="toggle-label special-toggle-label" title="toggle R-line">R</label>
         </td>
 
 
@@ -201,7 +203,7 @@
                 int i = index;
                 <td class="character-data character" id="@(rLine[i])-toggle-data">
                     <input type="checkbox" name="@(rLine[i])-toggle-label" value="" checked="@characterState(kana)" id="@(rLine[i])-toggle-label" class="toggle-input character-toggle-input" style="display: none;" @onclick='() => toggleCharacter(kana)' />
-                    <label for="@(rLine[i])-toggle-label" id="@(rLine[i])-toggle-label" class="toggle-label character-toggle-label">@kana</label>
+				<label for="@(rLine[i])-toggle-label" id="@(rLine[i])-toggle-label" class="toggle-label character-toggle-label" title="@(kanaModel.lookup[kana].Pronunciation)">@kana</label>
                 </td>
 
                 index++;
