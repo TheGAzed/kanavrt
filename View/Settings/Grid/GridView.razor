@@ -26,22 +26,22 @@
 	<h4>KANA COUNT : @(model.characters.Count)</h4>
 	<section>
 		<table id="character-set-table">
-            @if (!isDigraph && !isDiacriticMonograph) {
-                <MonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></MonographTableView>
+			@if (!isDigraph && !isDiacriticMonograph) {
+				<MonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></MonographTableView>
 			} else if (!isDigraph && isDiacriticMonograph) {
-                <DiacriticMonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></DiacriticMonographTableView>
+				<DiacriticMonographTableView @bind-isDiacritic="isDiacriticMonograph" @bind-characterSet="model.characters"></DiacriticMonographTableView>
 			} else if (isDigraph && !isDiacriticDigraph) {
 				<DigraphTableView @bind-isDiacritic="isDiacriticDigraph" @bind-characterSet="model.characters"></DigraphTableView>
 			} else if (isDigraph && isDiacriticDigraph) {
 				<DiacriticDigraphTableView @bind-isDiacritic="isDiacriticDigraph" @bind-characterSet="model.characters"></DiacriticDigraphTableView>
-            }
+			}
 		</table>
 
 		<div id="graph-type">
-			<InputRadioGroup @bind-Value="@(isDigraph)">
-				<InputRadio id="monograph-input" Value="false" class="graph-input" style="display: none;" @onclick="() => isDiacriticDigraph = false" />
-				<label class="graph-label" id="monograph-label" for="monograph-input">MONOGRAPHS</label>
-				<InputRadio Value="true" id="digraph-toggle-input" class="graph-input" style="display: none;" @onclick="() => isDiacriticMonograph = false" />
+			<InputRadioGroup @bind-Value="isDigraph">
+				<InputRadio id="monograph-toggle-input" Value="false" class="graph-input" style="display: none;"/>
+				<label class="graph-label" id="monograph-label" for="monograph-toggle-input">MONOGRAPHS</label>
+				<InputRadio Value="true" id="digraph-toggle-input" class="graph-input" style="display: none;"/>
 				<label class="graph-label" id="digraph-label" for="digraph-toggle-input">DIGRAPHS</label>
 			</InputRadioGroup>
 		</div>
