@@ -44,7 +44,7 @@
 
 		async Task resetController() {
 			if (main != null) await main;
-			controller.Reset_();
+			controller.Reset();
 		}
 	}
 
@@ -77,13 +77,13 @@
 		<section>
 			<ProgressBarView controller="@controller" handleReset="resetController" @ref="progressBar"></ProgressBarView>
 
-			<button style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="guess-button @guessButtonState(@guesses[index])" @onclick="() => updateViewer(guesses[index])">
+			<button type="button" lang="ja" style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="guess-button @guessButtonState(@guesses[index])" @onclick="() => updateViewer(guesses[index])">
 				@guesses[index]
 			</button>
 
 			<p class="latin-guess @latinGuessState()">@CurrentLatin</p>
 
-			<button style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="guess-button @guessButtonState(@guesses[1 - index])" @onclick="() => updateViewer(guesses[1 - index])">
+			<button type="button" lang="ja" style="font-family: @(settingsModel.lookup[settingsModel.Font]);" class="guess-button @guessButtonState(@guesses[1 - index])" @onclick="() => updateViewer(guesses[1 - index])">
 				@guesses[1 - index]
 			</button>
 		</section>

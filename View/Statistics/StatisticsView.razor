@@ -32,13 +32,13 @@
 
 					@foreach (string kana in monographTableModel.VowelsSet) {
 						int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-						double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
+						double bar = (sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects) / 100;
 
 						<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
 							<p class="character">@(kana)</p>
 							<div class="progress-bar">
 								<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-								<div class="progress-bar-line" style="width: @(bar)%;"></div>
+								<div class="progress-bar-line" style="width: calc((100% - 4.5rem) * @(bar));"></div>
 								<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
 							</div>
 						</div>
@@ -47,13 +47,13 @@
 					@foreach (HashSet<string> set in monographTableModel.ConsonantsLineSetLookup) {
 						@foreach (string kana in set) {
 							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
+							double bar = (sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects) / 100;
 
 							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
 								<p class="character">@(kana)</p>
 								<div class="progress-bar">
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<div class="progress-bar-line" style="width: calc((100% - 4.5rem) * @(bar));"></div>
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
 								</div>
 							</div>
@@ -76,13 +76,13 @@
 					@foreach (HashSet<string> set in digraphTableModel.ConsonantsLineSetLookup) {
 						@foreach (string kana in set) {
 							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
+							double bar = (sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects) / 100;
 
 							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
 								<p class="character">@(kana)</p>
 								<div class="progress-bar">
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<div class="progress-bar-line" style="width: calc((100% - 4.5rem) * @(bar));"></div>
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
 								</div>
 							</div>
@@ -106,13 +106,13 @@
 					@foreach (HashSet<string> set in diacriticMonographTableModel.ConsonantsLineSetLookup) {
 						@foreach (string kana in set) {
 							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
+							double bar = (sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects) / 100;
 
 							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
 								<p class="character">@(kana)</p>
 								<div class="progress-bar">
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<div class="progress-bar-line" style="width: calc((100% - 4.5rem) * @(bar));"></div>
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
 								</div>
 							</div>
@@ -135,13 +135,13 @@
 					@foreach (HashSet<string> set in diacriticDigraphTableModel.ConsonantsLineSetLookup) {
 						@foreach (string kana in set) {
 							int sum = statisticsModel.lookup[kana].Corrects + statisticsModel.lookup[kana].Wrongs;
-							double bar = sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects;
+							double bar = (sum == 0 ? 0 : (100.0 / sum) * statisticsModel.lookup[kana].Corrects) / 100;
 
 							<div class='character-statistic @(sum == 0 ? "character-statistic-unset" : "")'>
 								<p class="character">@(kana)</p>
 								<div class="progress-bar">
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Corrects)</p>
-									<div class="progress-bar-line" style="width: @(bar)%;"></div>
+									<div class="progress-bar-line" style="width: calc((100% - 4.5rem) * @(bar));"></div>
 									<p class="progress-bar-count">@(statisticsModel.lookup[kana].Wrongs)</p>
 								</div>
 							</div>

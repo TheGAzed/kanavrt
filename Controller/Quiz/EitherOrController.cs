@@ -7,8 +7,6 @@ namespace kanavrt.Controller.Quiz {
         public string WrongSyllable { get; set; } = string.Empty;
 
         protected override void InitialMove_() {
-            base.InitialMove_();
-
             int index = random.Next(0, settingsModel.characters.Count);
             CorrectSyllable = settingsModel.characters.ElementAt(index);
 			settingsModel.characters.Remove(CorrectSyllable);
@@ -31,5 +29,28 @@ namespace kanavrt.Controller.Quiz {
                 settingsModel.characters.Add(temp);
             }
         }
-    }
+
+		protected override void Update_(string input) {
+			if (CorrectSyllable.Equals(input)) {
+				CorrectGuesses++;
+				statisticsModel.lookup[CorrectSyllable].Corrects++;
+			} else {
+				WrongGuesses++;
+				statisticsModel.lookup[CorrectSyllable].Wrongs++;
+			}
+
+			NextMove_();
+		}
+
+		protected override bool IsCorrect_(string latin) {
+			string[] latinForms = kanaModel.lookup[CorrectSyllable].Latin;
+			return latinForms.Contains(latin);
+		}
+
+		protected override void Reset_() {
+			WrongGuesses = 0;
+			CorrectGuesses = 0;
+			NextMove_();
+		}
+	}
 }

@@ -60,54 +60,15 @@ namespace kanavrt.Controller.Quiz {
 			if (isError) throw new("Can't call function if controller Error.");
 			InitialMove_();
 		}
-		/// <summary>
-		/// Initial move thet gets called by the contructor.
-		/// </summary>
-		protected virtual void InitialMove_() {
-			int index = random.Next(0, settingsModel.characters.Count);
-			CorrectSyllable = settingsModel.characters.ElementAt(index);
-		}
 
 		protected void NextMove() {
 			if (isError) throw new("Can't call function if controller Error.");
 			NextMove_();
 		}
 
-		/// <summary>
-		/// Next move that gets called by update after the user succedes/fails at guessing the correct character.
-		/// </summary>
-		protected virtual void NextMove_() {
-			if (1 == settingsModel.characters.Count) return;
-
-			settingsModel.characters.Remove(CorrectSyllable);
-
-			int index = random.Next(0, settingsModel.characters.Count);
-
-			string temp = settingsModel.characters.ElementAt(index);
-			settingsModel.characters.Add(CorrectSyllable);
-			CorrectSyllable = temp;
-		}
-
 		public void Update(string input) {
 			if (isError) throw new("Can't call function if controller Error.");
 			Update_(input);
-		}
-
-		/// <summary>
-		/// Updates the necesarry mode variables and calls NextMove_.
-		/// </summary>
-		/// <param name="input"></param>
-		protected virtual void Update_(string input) {
-			if (CorrectSyllable.Equals(input)) {
-				CorrectGuesses++;
-				statisticsModel.lookup[CorrectSyllable].Corrects++; 
-			} 
-			else {
-				WrongGuesses++;
-				statisticsModel.lookup[CorrectSyllable].Wrongs++; 
-			}
-
-			NextMove_();
 		}
 
 		public bool IsCorrect(string latin) {
@@ -116,26 +77,36 @@ namespace kanavrt.Controller.Quiz {
 			return IsCorrect_(latin);
 		}
 
-		/// <summary>
-		/// Checks if current latin input is correct.
-		/// </summary>
-		/// <param name="latin">String input to check.</param>
-		/// <returns>true, if latin input is correct, false otherwise</returns>
-		protected virtual bool IsCorrect_(string latin) {
-			string[] latinForms = kanaModel.lookup[CorrectSyllable].Latin;
-			return latinForms.Contains(latin);
-		}
-
 		public void Reset() {
 			if (isError) throw new("Can't call function if controller Error.");
 
 			Reset_();
 		}
 
-		public virtual void Reset_() {
-			WrongGuesses = 0;
-			CorrectGuesses = 0;
-			NextMove_();
-		}
+		/// <summary>
+		/// Initial move thet gets called by the contructor.
+		/// </summary>
+		protected abstract void InitialMove_();
+
+		/// <summary>
+		/// Next move that gets called by update after the user succedes/fails at guessing the correct character.
+		/// </summary>
+		protected abstract void NextMove_();
+
+		/// <summary>
+		/// Updates the necesarry mode variables and calls NextMove_.
+		/// </summary>
+		/// <param name="input"></param>
+		protected abstract void Update_(string input);
+
+		/// <summary>
+		/// Checks if current latin input is correct.
+		/// </summary>
+		/// <param name="latin">String input to check.</param>
+		/// <returns>true, if latin input is correct, false otherwise</returns>
+		/// 
+		protected abstract bool IsCorrect_(string latin);
+
+		protected abstract void Reset_();
 	}
 }
