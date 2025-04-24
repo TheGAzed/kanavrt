@@ -22,6 +22,11 @@ namespace kanavrt.Controller.Quiz {
 		/// <summary>
 		/// Character kanaModel to get random characters from.
 		/// </summary>
+		public bool isError = false;
+		public ControllerError Error;
+
+		public int WrongGuesses { get; set; } = 0;
+		public int CorrectGuesses { get; set; } = 0;
 		protected KanaModel kanaModel { get; }
 		protected StatisticsModel statisticsModel { get; }
 		protected SettingsModel settingsModel { get; }
@@ -29,11 +34,6 @@ namespace kanavrt.Controller.Quiz {
 		/// Class to generate random indexes to get syllables.
 		/// </summary>
 		protected Random random = new Random();
-		public bool isError = false;
-		public ControllerError Error;
-
-		public int WrongGuesses { get; set; } = 0;
-		public int CorrectGuesses { get; set; } = 0;
 
 		public AbstractQuizController(KanaModel kanaModel, StatisticsModel statisticsModel, SettingsModel settingsModel, int guessCount) {
 			GuessCount = guessCount;
