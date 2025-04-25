@@ -2,7 +2,7 @@
 
 KANAVRT is a Blazor WebAssembly application designed to help users learn and practice Kana characters (Japanese syllabary). It provides tools for managing Kana character sets, tracking performance statistics, and engaging in interactive quizzes.
 
----
+--
 
 ## Features
 
@@ -65,7 +65,7 @@ KANAVRT is a Blazor WebAssembly application designed to help users learn and pra
   - Form for users to fill out with their name, email, subject and message.
   - Send button to submit the form via email client.
 
----
+--
 
 ## Systems Manual
 
@@ -94,28 +94,28 @@ The system is divided into several parts, each responsible for different functio
   - **KanaModel.cs**: Represents all Kana characters together with their latin form and pronunciation.
   - **Statistics/StatisticsModel.cs**: Stores the number of correct and wrong guesses for each playable glyth.
   - **Settings/***: Represents the settings of the application.
-	- **SettingsModel.cs**: Stores the current settings, i.e. current font and set of characters.
-	- **Grid/Table/***: Table models used in grid settings containing row, column, vowel and consonants-based sets.
-	  - **AbstractTableModel.cs**: Abstract class for creating different table models.
-	  - **MonographTableModel.cs**: Represents the table model for monographs.
-	  - **DigraphTableModel.cs**: Represents the table model for digraphs.
-	  - **DiacriticMonographTableModel.cs**: Represents the table model for diacritic monographs.
-	  - **DiacriticDigraphTableModel.cs**: Represents the table model for diacritic digraphs.
+    - **SettingsModel.cs**: Stores the current settings, i.e. current font and set of characters.
+    - **Grid/Table/***: Table models used in grid settings containing row, column, vowel and consonants-based sets.
+      - **AbstractTableModel.cs**: Abstract class for creating different table models.
+      - **MonographTableModel.cs**: Represents the table model for monographs.
+      - **DigraphTableModel.cs**: Represents the table model for digraphs.
+      - **DiacriticMonographTableModel.cs**: Represents the table model for diacritic monographs.
+      - **DiacriticDigraphTableModel.cs**: Represents the table model for diacritic digraphs.
 - **Directory Overview**
 ```
 Model
-??? Statistics
-?   ??? StatisticsModel.cs
-??? KanaModel.cs
-??? Settings
-	??? Grid
-	?   ??? Table
-	?       ??? DigraphTableModel.cs
-	?       ??? AbstractTableModel.cs
-	?       ??? MonographTableModel.cs
-	?       ??? DiacriticMonographTableModel.cs
-	?       ??? DiacriticDigraphTableModel.cs
-	??? SettingsModel.cs
+|-- Statistics
+?   +-- StatisticsModel.cs
+|-- KanaModel.cs
++-- Settings
+    |-- Grid
+    ?   +-- Table
+    ?       |-- DigraphTableModel.cs
+    ?       |-- AbstractTableModel.cs
+    ?       |-- MonographTableModel.cs
+    ?       |-- DiacriticMonographTableModel.cs
+    ?       +-- DiacriticDigraphTableModel.cs
+    +-- SettingsModel.cs
 ```
 
 #### - **View**
@@ -128,24 +128,24 @@ Model
   - **MainNavView.razor**: The main navigation component for single page.
 
   - **Quiz/***: Blazor components representing quizes.
-	- **QuizView.razor**: Helper component for redirecting to main quiz mode (EitherOrView).
-	- **QuizSideNavView.razor**: Component for displaying quiz page side navigation.
-	- **EitherOr/EitherOrView.razor**: Page for the either-or quiz.
-	- **Keyboard/KeyboardView.razor**: Page for the keyboard quiz.
-	- **ProgressBarView.razor**: Component for displaying quiz progress bar.
+    - **QuizView.razor**: Helper component for redirecting to main quiz mode (EitherOrView).
+    - **QuizSideNavView.razor**: Component for displaying quiz page side navigation.
+    - **EitherOr/EitherOrView.razor**: Page for the either-or quiz.
+    - **Keyboard/KeyboardView.razor**: Page for the keyboard quiz.
+    - **ProgressBarView.razor**: Component for displaying quiz progress bar.
 
   - **Settings/***: Blazor components representing settings.
-	- **SettingsView.razor**: Helper component for redirecting to main settings page (GridView).
-	- **SettingsSideNavView.razor**: Component for displaying settings page side navigation.
-	- **Fonts/FontsView.razor**: Page for font settings.
-	- **Grid/***: Blazor components representing grid settings.
-	  - **GridView.razor**: Page for grid settings.
-	  - **Table/***: Page for displaying the grid table components.
-		- **AbstractTableView.razor**: Abstract class for creating different table view components.
-		- **MonographTableView.razor**: Page for displaying the monograph table component.
-		- **DigraphTableView.razor**: Page for displaying the digraph table component.
-		- **DiacriticMonographTableView.razor**: Page for displaying the diacritic monograph table component.
-		- **DiacriticDigraphTableView.razor**: Page for displaying the diacritic digraph table component.
+    - **SettingsView.razor**: Helper component for redirecting to main settings page (GridView).
+    - **SettingsSideNavView.razor**: Component for displaying settings page side navigation.
+    - **Fonts/FontsView.razor**: Page for font settings.
+    - **Grid/***: Blazor components representing grid settings.
+      - **GridView.razor**: Page for grid settings.
+      - **Table/***: Page for displaying the grid table components.
+        - **AbstractTableView.razor**: Abstract class for creating different table view components.
+        - **MonographTableView.razor**: Page for displaying the monograph table component.
+        - **DigraphTableView.razor**: Page for displaying the digraph table component.
+        - **DiacriticMonographTableView.razor**: Page for displaying the diacritic monograph table component.
+        - **DiacriticDigraphTableView.razor**: Page for displaying the diacritic digraph table component.
 
   - **Statistics/StatisticsView.razor**: Page for displaying statistics for each character in the form of wrong/correct guesses.
 
@@ -153,53 +153,53 @@ Model
 - **Directory Overview**
 ```
 View
-??? HomeView.razor.css
-??? ErrorView.razor
-??? ErrorView.razor.css
-??? Settings
-?   ??? SettingsView.razor
-?   ??? SettingsSideNavView.razor
-?   ??? Fonts
-?   ?   ??? FontsView.razor.css
-?   ?   ??? FontsView.razor
-?   ??? Grid
-?       ??? GridView.razor.css
-?       ??? Table
-?       ?   ??? AbstractTableView.razor
-?       ?   ??? DiacriticDigraphTableView.razor.css
-?       ?   ??? DiacriticMonographTableView.razor.css
-?       ?   ??? DigraphTableView.razor.css
-?       ?   ??? MonographTableView.razor.css
-?       ?   ??? MonographTableView.razor
-?       ?   ??? DigraphTableView.razor
-?       ?   ??? DiacriticMonographTableView.razor
-?       ?   ??? DiacriticDigraphTableView.razor
-?       ??? GridView.razor
-??? Contact
-?   ??? ContactView.razor
-?   ??? ContactSideNavView.razor
-?   ??? Form
-?   ?   ??? FormView.razor.css
-?   ?   ??? FormView.razor
-?   ??? Information
-?       ??? InformationView.razor.css
-?       ??? InformationView.razor
-??? MainNavView.razor
-??? Quiz
-?   ??? QuizSideNavView.razor
-?   ??? QuizView.razor
-?   ??? ProgressBarView.razor
-?   ??? ProgressBarView.razor.css
-?   ??? Keyboard
-?   ?   ??? KeyboardView.razor.css
-?   ?   ??? KeyboardView.razor
-?   ??? EitherOr
-?       ??? EitherorView.razor.css
-?       ??? EitherorView.razor
-??? HomeView.razor
-??? Statistics
-	??? StatisticsView.razor.css
-	??? StatisticsView.razor
+|-- HomeView.razor.css
+|-- ErrorView.razor
+|-- ErrorView.razor.css
+|-- Settings
+?   |-- SettingsView.razor
+?   |-- SettingsSideNavView.razor
+?   |-- Fonts
+?   ?   |-- FontsView.razor.css
+?   ?   +-- FontsView.razor
+?   +-- Grid
+?       |-- GridView.razor.css
+?       |-- Table
+?       ?   |-- AbstractTableView.razor
+?       ?   |-- DiacriticDigraphTableView.razor.css
+?       ?   |-- DiacriticMonographTableView.razor.css
+?       ?   |-- DigraphTableView.razor.css
+?       ?   |-- MonographTableView.razor.css
+?       ?   |-- MonographTableView.razor
+?       ?   |-- DigraphTableView.razor
+?       ?   |-- DiacriticMonographTableView.razor
+?       ?   +-- DiacriticDigraphTableView.razor
+?       +-- GridView.razor
+|-- Contact
+?   |-- ContactView.razor
+?   |-- ContactSideNavView.razor
+?   |-- Form
+?   ?   |-- FormView.razor.css
+?   ?   +-- FormView.razor
+?   +-- Information
+?       |-- InformationView.razor.css
+?       +-- InformationView.razor
+|-- MainNavView.razor
+|-- Quiz
+?   |-- QuizSideNavView.razor
+?   |-- QuizView.razor
+?   |-- ProgressBarView.razor
+?   |-- ProgressBarView.razor.css
+?   |-- Keyboard
+?   ?   |-- KeyboardView.razor.css
+?   ?   +-- KeyboardView.razor
+?   +-- EitherOr
+?       |-- EitherorView.razor.css
+?       +-- EitherorView.razor
+|-- HomeView.razor
++-- Statistics
+    |-- StatisticsView.razor.css
+    +-- StatisticsView.razor
 ```
 
 #### - **Controller**
@@ -208,16 +208,16 @@ View
 - **Purpose**: Represents the logic of the application quizes and intermediate between Views and Models.
 - **Key Components**:
   - **Quiz/***: Blazor components representing quiz logic.
-	- **AbstractQuizController**: Abstract class for creating different quiz controllers and their game logic.
-	- **EitherOrQuizController**: Controller for the either-or quiz.
-	- **KeyboardQuizController**: Controller for the keyboard quiz.
+    - **AbstractQuizController**: Abstract class for creating different quiz controllers and their game logic.
+    - **EitherOrQuizController**: Controller for the either-or quiz.
+    - **KeyboardQuizController**: Controller for the keyboard quiz.
 - **Directory Overview**
 ```
 Controller
-??? Quiz
-	??? AbstractQuizController.cs
-	??? EitherOrController.cs
-	??? KeyboardController.cs
++-- Quiz
+    |-- AbstractQuizController.cs
+    |-- EitherOrController.cs
+    +-- KeyboardController.cs
 ```
 
 #### - **Assets**
@@ -233,85 +233,85 @@ Controller
 - **Directory Overview**
 ```
 wwwroot
-??? favicon.ico
-??? img
-?   ??? svg
-?       ??? home
-?       ?   ??? github.svg
-?       ?   ??? linkedin.svg
-?       ?   ??? twitter.svg
-?       ??? logo-main.svg
-?       ??? settings
-?       ?   ??? fonts.svg
-?       ?   ??? fonts_active.svg
-?       ?   ??? grid.svg
-?       ?   ??? grid_active.svg
-?       ??? quiz
-?       ?   ??? arrow-clockwise.svg
-?       ?   ??? eitheror.svg
-?       ?   ??? eitheror_active.svg
-?       ?   ??? keyboard.svg
-?       ?   ??? keyboard_active.svg
-?       ?   ??? volume-down.svg
-?       ?   ??? volume-off.svg
-?       ??? mainnav
-?       ?   ??? contact-active.svg
-?       ?   ??? contact-default.svg
-?       ?   ??? home-active.svg
-?       ?   ??? home-default.svg
-?       ?   ??? settings-active.svg
-?       ?   ??? settings-default.svg
-?       ?   ??? statistics-active.svg
-?       ?   ??? statistics-default.svg
-?       ?   ??? quiz-active.svg
-?       ?   ??? quiz-default.svg
-?       ??? statistics
-?       ?   ??? caret-right-fill.svg
-?       ??? contact
-?           ??? envelope-fill.svg
-?           ??? telephone-fill.svg
-?           ??? form.svg
-?           ??? form_active.svg
-?           ??? home-active.svg
-?           ??? information.svg
-?           ??? information_active.svg
-??? manifest.webmanifest
-??? service-worker.js
-??? font
-?   ??? Aoboshi_One
-?   ?   ??? AoboshiOne-Regular.ttf
-?   ?   ??? OFL.txt
-?   ??? Cherry_Bomb_One
-?   ?   ??? CherryBombOne-Regular.ttf
-?   ?   ??? OFL.txt
-?   ??? Zen_Kurenaido
-?   ?   ??? OFL.txt
-?   ?   ??? ZenKurenaido-Regular.ttf
-?   ??? Chokokutai
-?   ?   ??? Chokokutai-Regular.ttf
-?   ?   ??? OFL.txt
-?   ??? Dela_Gothic_One
-?   ?   ??? DelaGothicOne-Regular.ttf
-?   ?   ??? OFL.txt
-?   ??? Monomaniac_One
-?   ?   ??? MonomaniacOne-Regular.ttf
-?   ?   ??? OFL.txt
-?   ??? Hannari
-?   ?   ??? DESCRIPTION.en_us.html
-?   ?   ??? Hannari-Regular.ttf
-?   ?   ??? OFL.txt
-?   ??? DotGothic16
-?       ??? DotGothic16-Regular.ttf
-?       ??? OFL.txt
-??? service-worker.published.js
-??? js
-?   ??? focus.js
-??? Ads.txt
-??? sitemap.xml
-??? robots.txt
-??? index.html
-??? css
-	??? sidenav.css
-	??? mainnav.css
-	??? kanavrt.css
+|-- favicon.ico
+|-- img
+?   +-- svg
+?       |-- home
+?       ?   |-- github.svg
+?       ?   |-- linkedin.svg
+?       ?   +-- twitter.svg
+?       |-- logo-main.svg
+?       |-- settings
+?       ?   |-- fonts.svg
+?       ?   |-- fonts_active.svg
+?       ?   |-- grid.svg
+?       ?   +-- grid_active.svg
+?       |-- quiz
+?       ?   |-- arrow-clockwise.svg
+?       ?   |-- eitheror.svg
+?       ?   |-- eitheror_active.svg
+?       ?   |-- keyboard.svg
+?       ?   |-- keyboard_active.svg
+?       ?   |-- volume-down.svg
+?       ?   +-- volume-off.svg
+?       |-- mainnav
+?       ?   |-- contact-active.svg
+?       ?   |-- contact-default.svg
+?       ?   |-- home-active.svg
+?       ?   |-- home-default.svg
+?       ?   |-- settings-active.svg
+?       ?   |-- settings-default.svg
+?       ?   |-- statistics-active.svg
+?       ?   |-- statistics-default.svg
+?       ?   |-- quiz-active.svg
+?       ?   +-- quiz-default.svg
+?       |-- statistics
+?       ?   +-- caret-right-fill.svg
+?       +-- contact
+?           |-- envelope-fill.svg
+?           |-- telephone-fill.svg
+?           |-- form.svg
+?           |-- form_active.svg
+?           |-- home-active.svg
+?           |-- information.svg
+?           +-- information_active.svg
+|-- manifest.webmanifest
+|-- service-worker.js
+|-- font
+?   |-- Aoboshi_One
+?   ?   |-- AoboshiOne-Regular.ttf
+?   ?   +-- OFL.txt
+?   |-- Cherry_Bomb_One
+?   ?   |-- CherryBombOne-Regular.ttf
+?   ?   +-- OFL.txt
+?   |-- Zen_Kurenaido
+?   ?   |-- OFL.txt
+?   ?   +-- ZenKurenaido-Regular.ttf
+?   |-- Chokokutai
+?   ?   |-- Chokokutai-Regular.ttf
+?   ?   +-- OFL.txt
+?   |-- Dela_Gothic_One
+?   ?   |-- DelaGothicOne-Regular.ttf
+?   ?   +-- OFL.txt
+?   |-- Monomaniac_One
+?   ?   |-- MonomaniacOne-Regular.ttf
+?   ?   +-- OFL.txt
+?   |-- Hannari
+?   ?   |-- DESCRIPTION.en_us.html
+?   ?   |-- Hannari-Regular.ttf
+?   ?   +-- OFL.txt
+?   +-- DotGothic16
+?       |-- DotGothic16-Regular.ttf
+?       +-- OFL.txt
+|-- service-worker.published.js
+|-- js
+?   +-- focus.js
+|-- Ads.txt
+|-- sitemap.xml
+|-- robots.txt
+|-- index.html
++-- css
+    |-- sidenav.css
+    |-- mainnav.css
+    +-- kanavrt.css
 ```
