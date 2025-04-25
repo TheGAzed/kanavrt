@@ -78,7 +78,7 @@ KANAVRT is a Blazor WebAssembly application designed to help users learn and pra
 #### Installation
 1. Clone the repository
 2. Open the solution (kanavrt.sln) in Visual Studio
-3. Build and run the project (green triangle button with 'https' next to it)
+3. Build and run the project (green triangle button at top with 'https' next to it)
 
 ### KANAVRT system
 
@@ -87,20 +87,22 @@ KANAVRT is a Blazor WebAssembly application designed to help users learn and pra
 The system is divided into several parts, each responsible for different functionalities based on the MVC design pattern.
 
 #### - **Model**
+- **Route**: `/Model`
 - **Purpose**: Represents the data of the game logic in the application.
 - **Key Components**:
-  - **KanaModel**: Represents all Kana characters together with their latin form and pronunciation.
-  - **Statistics/StatisticsModel**: Stores the number of correct and wrong guesses for each playable glyth.
+  - **KanaModel.cs**: Represents all Kana characters together with their latin form and pronunciation.
+  - **Statistics/StatisticsModel.cs**: Stores the number of correct and wrong guesses for each playable glyth.
   - **Settings/***: Represents the settings of the application.
-	- **SettingsModel**: Stores the current settings, i.e. current font and set of characters.
+	- **SettingsModel.cs**: Stores the current settings, i.e. current font and set of characters.
 	- **Grid/Table/***: Table models used in grid settings containing row, column, vowel and consonants-based sets.
-	  - **AbstractTableModel**: Abstract class for creating different table models.
-	  - **MonographTableModel**: Represents the table model for monographs.
-	  - **DigraphTableModel**: Represents the table model for digraphs.
-	  - **DiacriticMonographTableModel**: Represents the table model for diacritic monographs.
-	  - **DiacriticDigraphTableModel**: Represents the table model for diacritic digraphs.
+	  - **AbstractTableModel.cs**: Abstract class for creating different table models.
+	  - **MonographTableModel.cs**: Represents the table model for monographs.
+	  - **DigraphTableModel.cs**: Represents the table model for digraphs.
+	  - **DiacriticMonographTableModel.cs**: Represents the table model for diacritic monographs.
+	  - **DiacriticDigraphTableModel.cs**: Represents the table model for diacritic digraphs.
 
 #### - **View**
+- **Route**: `/View`
 - **Purpose**: Represents the user interface of the application.
 - **Key Components**:
   - **HomeView.razor**: The body page of each page view.
@@ -132,9 +134,21 @@ The system is divided into several parts, each responsible for different functio
   - **ErrorView.razor**: Page for displaying error messages.
 
 #### - **Controller**
+- **Route**: `/Controller`
 - **Purpose**: Represents the logic of the application quizes and intermediate between Views and Models.
 - **Key Components**:
   - **Quiz/***: Blazor components representing quiz logic.
 	- **AbstractQuizController**: Abstract class for creating different quiz controllers and their game logic.
 	- **EitherOrQuizController**: Controller for the either-or quiz.
 	- **KeyboardQuizController**: Controller for the keyboard quiz.
+
+#### - **Assets**
+- **Route**: `/wwwroot`
+- **Purpose**: Represents the assets of the application.
+- **Key Components**:
+  - **css/***: Folder containing the styles used in the application.
+  - **js/***: Folder containing javascript code used in the application.
+  - **img/***: Folder containing the images used in the application.
+  - **font/***: Folder containing the fonts used in the application.
+  - **favicon.ico***: Application icon.
+  - **index.html**: The main HTML file of the application.
