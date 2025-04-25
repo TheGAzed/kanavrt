@@ -87,6 +87,7 @@ KANAVRT is a Blazor WebAssembly application designed to help users learn and pra
 The system is divided into several parts, each responsible for different functionalities based on the MVC design pattern.
 
 #### - **Model**
+
 - **Route**: `/Model`
 - **Purpose**: Represents the data of the game logic in the application.
 - **Key Components**:
@@ -100,8 +101,25 @@ The system is divided into several parts, each responsible for different functio
 	  - **DigraphTableModel.cs**: Represents the table model for digraphs.
 	  - **DiacriticMonographTableModel.cs**: Represents the table model for diacritic monographs.
 	  - **DiacriticDigraphTableModel.cs**: Represents the table model for diacritic digraphs.
+- **Directory Overview**
+```
+Model
+??? Statistics
+?   ??? StatisticsModel.cs
+??? KanaModel.cs
+??? Settings
+	??? Grid
+	?   ??? Table
+	?       ??? DigraphTableModel.cs
+	?       ??? AbstractTableModel.cs
+	?       ??? MonographTableModel.cs
+	?       ??? DiacriticMonographTableModel.cs
+	?       ??? DiacriticDigraphTableModel.cs
+	??? SettingsModel.cs
+```
 
 #### - **View**
+
 - **Route**: `/View`
 - **Purpose**: Represents the user interface of the application.
 - **Key Components**:
@@ -132,8 +150,60 @@ The system is divided into several parts, each responsible for different functio
   - **Statistics/StatisticsView.razor**: Page for displaying statistics for each character in the form of wrong/correct guesses.
 
   - **ErrorView.razor**: Page for displaying error messages.
+- **Directory Overview**
+```
+View
+??? HomeView.razor.css
+??? ErrorView.razor
+??? ErrorView.razor.css
+??? Settings
+?   ??? SettingsView.razor
+?   ??? SettingsSideNavView.razor
+?   ??? Fonts
+?   ?   ??? FontsView.razor.css
+?   ?   ??? FontsView.razor
+?   ??? Grid
+?       ??? GridView.razor.css
+?       ??? Table
+?       ?   ??? AbstractTableView.razor
+?       ?   ??? DiacriticDigraphTableView.razor.css
+?       ?   ??? DiacriticMonographTableView.razor.css
+?       ?   ??? DigraphTableView.razor.css
+?       ?   ??? MonographTableView.razor.css
+?       ?   ??? MonographTableView.razor
+?       ?   ??? DigraphTableView.razor
+?       ?   ??? DiacriticMonographTableView.razor
+?       ?   ??? DiacriticDigraphTableView.razor
+?       ??? GridView.razor
+??? Contact
+?   ??? ContactView.razor
+?   ??? ContactSideNavView.razor
+?   ??? Form
+?   ?   ??? FormView.razor.css
+?   ?   ??? FormView.razor
+?   ??? Information
+?       ??? InformationView.razor.css
+?       ??? InformationView.razor
+??? MainNavView.razor
+??? Quiz
+?   ??? QuizSideNavView.razor
+?   ??? QuizView.razor
+?   ??? ProgressBarView.razor
+?   ??? ProgressBarView.razor.css
+?   ??? Keyboard
+?   ?   ??? KeyboardView.razor.css
+?   ?   ??? KeyboardView.razor
+?   ??? EitherOr
+?       ??? EitherorView.razor.css
+?       ??? EitherorView.razor
+??? HomeView.razor
+??? Statistics
+	??? StatisticsView.razor.css
+	??? StatisticsView.razor
+```
 
 #### - **Controller**
+
 - **Route**: `/Controller`
 - **Purpose**: Represents the logic of the application quizes and intermediate between Views and Models.
 - **Key Components**:
@@ -141,6 +211,14 @@ The system is divided into several parts, each responsible for different functio
 	- **AbstractQuizController**: Abstract class for creating different quiz controllers and their game logic.
 	- **EitherOrQuizController**: Controller for the either-or quiz.
 	- **KeyboardQuizController**: Controller for the keyboard quiz.
+- **Directory Overview**
+```
+Controller
+??? Quiz
+	??? AbstractQuizController.cs
+	??? EitherOrController.cs
+	??? KeyboardController.cs
+```
 
 #### - **Assets**
 - **Route**: `/wwwroot`
@@ -152,3 +230,88 @@ The system is divided into several parts, each responsible for different functio
   - **font/***: Folder containing the fonts used in the application.
   - **favicon.ico***: Application icon.
   - **index.html**: The main HTML file of the application.
+- **Directory Overview**
+```
+wwwroot
+??? favicon.ico
+??? img
+?   ??? svg
+?       ??? home
+?       ?   ??? github.svg
+?       ?   ??? linkedin.svg
+?       ?   ??? twitter.svg
+?       ??? logo-main.svg
+?       ??? settings
+?       ?   ??? fonts.svg
+?       ?   ??? fonts_active.svg
+?       ?   ??? grid.svg
+?       ?   ??? grid_active.svg
+?       ??? quiz
+?       ?   ??? arrow-clockwise.svg
+?       ?   ??? eitheror.svg
+?       ?   ??? eitheror_active.svg
+?       ?   ??? keyboard.svg
+?       ?   ??? keyboard_active.svg
+?       ?   ??? volume-down.svg
+?       ?   ??? volume-off.svg
+?       ??? mainnav
+?       ?   ??? contact-active.svg
+?       ?   ??? contact-default.svg
+?       ?   ??? home-active.svg
+?       ?   ??? home-default.svg
+?       ?   ??? settings-active.svg
+?       ?   ??? settings-default.svg
+?       ?   ??? statistics-active.svg
+?       ?   ??? statistics-default.svg
+?       ?   ??? quiz-active.svg
+?       ?   ??? quiz-default.svg
+?       ??? statistics
+?       ?   ??? caret-right-fill.svg
+?       ??? contact
+?           ??? envelope-fill.svg
+?           ??? telephone-fill.svg
+?           ??? form.svg
+?           ??? form_active.svg
+?           ??? home-active.svg
+?           ??? information.svg
+?           ??? information_active.svg
+??? manifest.webmanifest
+??? service-worker.js
+??? font
+?   ??? Aoboshi_One
+?   ?   ??? AoboshiOne-Regular.ttf
+?   ?   ??? OFL.txt
+?   ??? Cherry_Bomb_One
+?   ?   ??? CherryBombOne-Regular.ttf
+?   ?   ??? OFL.txt
+?   ??? Zen_Kurenaido
+?   ?   ??? OFL.txt
+?   ?   ??? ZenKurenaido-Regular.ttf
+?   ??? Chokokutai
+?   ?   ??? Chokokutai-Regular.ttf
+?   ?   ??? OFL.txt
+?   ??? Dela_Gothic_One
+?   ?   ??? DelaGothicOne-Regular.ttf
+?   ?   ??? OFL.txt
+?   ??? Monomaniac_One
+?   ?   ??? MonomaniacOne-Regular.ttf
+?   ?   ??? OFL.txt
+?   ??? Hannari
+?   ?   ??? DESCRIPTION.en_us.html
+?   ?   ??? Hannari-Regular.ttf
+?   ?   ??? OFL.txt
+?   ??? DotGothic16
+?       ??? DotGothic16-Regular.ttf
+?       ??? OFL.txt
+??? service-worker.published.js
+??? js
+?   ??? focus.js
+??? Ads.txt
+??? sitemap.xml
+??? robots.txt
+??? index.html
+??? css
+	??? sidenav.css
+	??? mainnav.css
+	??? kanavrt.css
+```
