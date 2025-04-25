@@ -105,16 +105,16 @@ The system is divided into several parts, each responsible for different functio
 ```
 Model
 |-- Statistics
-?   +-- StatisticsModel.cs
+|   +-- StatisticsModel.cs
 |-- KanaModel.cs
 +-- Settings
     |-- Grid
-    ?   +-- Table
-    ?       |-- DigraphTableModel.cs
-    ?       |-- AbstractTableModel.cs
-    ?       |-- MonographTableModel.cs
-    ?       |-- DiacriticMonographTableModel.cs
-    ?       +-- DiacriticDigraphTableModel.cs
+    |   +-- Table
+    |       |-- DigraphTableModel.cs
+    |       |-- AbstractTableModel.cs
+    |       |-- MonographTableModel.cs
+    |       |-- DiacriticMonographTableModel.cs
+    |       +-- DiacriticDigraphTableModel.cs
     +-- SettingsModel.cs
 ```
 
@@ -157,45 +157,45 @@ View
 |-- ErrorView.razor
 |-- ErrorView.razor.css
 |-- Settings
-?   |-- SettingsView.razor
-?   |-- SettingsSideNavView.razor
-?   |-- Fonts
-?   ?   |-- FontsView.razor.css
-?   ?   +-- FontsView.razor
-?   +-- Grid
-?       |-- GridView.razor.css
-?       |-- Table
-?       ?   |-- AbstractTableView.razor
-?       ?   |-- DiacriticDigraphTableView.razor.css
-?       ?   |-- DiacriticMonographTableView.razor.css
-?       ?   |-- DigraphTableView.razor.css
-?       ?   |-- MonographTableView.razor.css
-?       ?   |-- MonographTableView.razor
-?       ?   |-- DigraphTableView.razor
-?       ?   |-- DiacriticMonographTableView.razor
-?       ?   +-- DiacriticDigraphTableView.razor
-?       +-- GridView.razor
+|   |-- SettingsView.razor
+|   |-- SettingsSideNavView.razor
+|   |-- Fonts
+|   |   |-- FontsView.razor.css
+|   |   +-- FontsView.razor
+|   +-- Grid
+|       |-- GridView.razor.css
+|       |-- Table
+|       |   |-- AbstractTableView.razor
+|       |   |-- DiacriticDigraphTableView.razor.css
+|       |   |-- DiacriticMonographTableView.razor.css
+|       |   |-- DigraphTableView.razor.css
+|       |   |-- MonographTableView.razor.css
+|       |   |-- MonographTableView.razor
+|       |   |-- DigraphTableView.razor
+|       |   |-- DiacriticMonographTableView.razor
+|       |   +-- DiacriticDigraphTableView.razor
+|       +-- GridView.razor
 |-- Contact
-?   |-- ContactView.razor
-?   |-- ContactSideNavView.razor
-?   |-- Form
-?   ?   |-- FormView.razor.css
-?   ?   +-- FormView.razor
-?   +-- Information
-?       |-- InformationView.razor.css
-?       +-- InformationView.razor
+|   |-- ContactView.razor
+|   |-- ContactSideNavView.razor
+|   |-- Form
+|   |   |-- FormView.razor.css
+|   |   +-- FormView.razor
+|   +-- Information
+|       |-- InformationView.razor.css
+|       +-- InformationView.razor
 |-- MainNavView.razor
 |-- Quiz
-?   |-- QuizSideNavView.razor
-?   |-- QuizView.razor
-?   |-- ProgressBarView.razor
-?   |-- ProgressBarView.razor.css
-?   |-- Keyboard
-?   ?   |-- KeyboardView.razor.css
-?   ?   +-- KeyboardView.razor
-?   +-- EitherOr
-?       |-- EitherorView.razor.css
-?       +-- EitherorView.razor
+|   |-- QuizSideNavView.razor
+|   |-- QuizView.razor
+|   |-- ProgressBarView.razor
+|   |-- ProgressBarView.razor.css
+|   |-- Keyboard
+|   |   |-- KeyboardView.razor.css
+|   |   +-- KeyboardView.razor
+|   +-- EitherOr
+|       |-- EitherorView.razor.css
+|       +-- EitherorView.razor
 |-- HomeView.razor
 +-- Statistics
     |-- StatisticsView.razor.css
@@ -235,77 +235,77 @@ Controller
 wwwroot
 |-- favicon.ico
 |-- img
-?   +-- svg
-?       |-- home
-?       ?   |-- github.svg
-?       ?   |-- linkedin.svg
-?       ?   +-- twitter.svg
-?       |-- logo-main.svg
-?       |-- settings
-?       ?   |-- fonts.svg
-?       ?   |-- fonts_active.svg
-?       ?   |-- grid.svg
-?       ?   +-- grid_active.svg
-?       |-- quiz
-?       ?   |-- arrow-clockwise.svg
-?       ?   |-- eitheror.svg
-?       ?   |-- eitheror_active.svg
-?       ?   |-- keyboard.svg
-?       ?   |-- keyboard_active.svg
-?       ?   |-- volume-down.svg
-?       ?   +-- volume-off.svg
-?       |-- mainnav
-?       ?   |-- contact-active.svg
-?       ?   |-- contact-default.svg
-?       ?   |-- home-active.svg
-?       ?   |-- home-default.svg
-?       ?   |-- settings-active.svg
-?       ?   |-- settings-default.svg
-?       ?   |-- statistics-active.svg
-?       ?   |-- statistics-default.svg
-?       ?   |-- quiz-active.svg
-?       ?   +-- quiz-default.svg
-?       |-- statistics
-?       ?   +-- caret-right-fill.svg
-?       +-- contact
-?           |-- envelope-fill.svg
-?           |-- telephone-fill.svg
-?           |-- form.svg
-?           |-- form_active.svg
-?           |-- home-active.svg
-?           |-- information.svg
-?           +-- information_active.svg
+|   +-- svg
+|       |-- home
+|       |   |-- github.svg
+|       |   |-- linkedin.svg
+|       |   +-- twitter.svg
+|       |-- logo-main.svg
+|       |-- settings
+|       |   |-- fonts.svg
+|       |   |-- fonts_active.svg
+|       |   |-- grid.svg
+|       |   +-- grid_active.svg
+|       |-- quiz
+|       |   |-- arrow-clockwise.svg
+|       |   |-- eitheror.svg
+|       |   |-- eitheror_active.svg
+|       |   |-- keyboard.svg
+|       |   |-- keyboard_active.svg
+|       |   |-- volume-down.svg
+|       |   +-- volume-off.svg
+|       |-- mainnav
+|       |   |-- contact-active.svg
+|       |   |-- contact-default.svg
+|       |   |-- home-active.svg
+|       |   |-- home-default.svg
+|       |   |-- settings-active.svg
+|       |   |-- settings-default.svg
+|       |   |-- statistics-active.svg
+|       |   |-- statistics-default.svg
+|       |   |-- quiz-active.svg
+|       |   +-- quiz-default.svg
+|       |-- statistics
+|       |   +-- caret-right-fill.svg
+|       +-- contact
+|           |-- envelope-fill.svg
+|           |-- telephone-fill.svg
+|           |-- form.svg
+|           |-- form_active.svg
+|           |-- home-active.svg
+|           |-- information.svg
+|           +-- information_active.svg
 |-- manifest.webmanifest
 |-- service-worker.js
 |-- font
-?   |-- Aoboshi_One
-?   ?   |-- AoboshiOne-Regular.ttf
-?   ?   +-- OFL.txt
-?   |-- Cherry_Bomb_One
-?   ?   |-- CherryBombOne-Regular.ttf
-?   ?   +-- OFL.txt
-?   |-- Zen_Kurenaido
-?   ?   |-- OFL.txt
-?   ?   +-- ZenKurenaido-Regular.ttf
-?   |-- Chokokutai
-?   ?   |-- Chokokutai-Regular.ttf
-?   ?   +-- OFL.txt
-?   |-- Dela_Gothic_One
-?   ?   |-- DelaGothicOne-Regular.ttf
-?   ?   +-- OFL.txt
-?   |-- Monomaniac_One
-?   ?   |-- MonomaniacOne-Regular.ttf
-?   ?   +-- OFL.txt
-?   |-- Hannari
-?   ?   |-- DESCRIPTION.en_us.html
-?   ?   |-- Hannari-Regular.ttf
-?   ?   +-- OFL.txt
-?   +-- DotGothic16
-?       |-- DotGothic16-Regular.ttf
-?       +-- OFL.txt
+|   |-- Aoboshi_One
+|   |   |-- AoboshiOne-Regular.ttf
+|   |   +-- OFL.txt
+|   |-- Cherry_Bomb_One
+|   |   |-- CherryBombOne-Regular.ttf
+|   |   +-- OFL.txt
+|   |-- Zen_Kurenaido
+|   |   |-- OFL.txt
+|   |   +-- ZenKurenaido-Regular.ttf
+|   |-- Chokokutai
+|   |   |-- Chokokutai-Regular.ttf
+|   |   +-- OFL.txt
+|   |-- Dela_Gothic_One
+|   |   |-- DelaGothicOne-Regular.ttf
+|   |   +-- OFL.txt
+|   |-- Monomaniac_One
+|   |   |-- MonomaniacOne-Regular.ttf
+|   |   +-- OFL.txt
+|   |-- Hannari
+|   |   |-- DESCRIPTION.en_us.html
+|   |   |-- Hannari-Regular.ttf
+|   |   +-- OFL.txt
+|   +-- DotGothic16
+|       |-- DotGothic16-Regular.ttf
+|       +-- OFL.txt
 |-- service-worker.published.js
 |-- js
-?   +-- focus.js
+|   +-- focus.js
 |-- Ads.txt
 |-- sitemap.xml
 |-- robots.txt
