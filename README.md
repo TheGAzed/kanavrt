@@ -6,7 +6,15 @@ KANAVRT is a Blazor WebAssembly application designed to help users learn and pra
 
 ## Features
 
-### 1. Quizzes
+### 1. Home
+- **Route**: `/`
+- **Purpose**: The main entry point of the application.
+- **Key Features**:
+  - Navigation to different sections of the application.
+  - Overview of the application and its purpose.
+  - Links to social media and GitHub repository.
+
+### 2. Quizzes
 #### Either-Or Quiz
 - **Route**: `/quiz/eitheror`
 - **Purpose**: Test your ability to distinguish between two Kana characters.
@@ -19,20 +27,43 @@ KANAVRT is a Blazor WebAssembly application designed to help users learn and pra
 - **How It Works**:
   - Type the correct Kana character based on the prompt.
 
-### 2. Grid Settings
+### 3. Settings
+#### Grid Settings
 - **Route**: `/settings/grid`
 - **Purpose**: Configure Kana character sets, including Monographs, Digraphs, and their diacritic variations.
 - **Key Features**:
   - Toggle between Monographs and Digraphs using radio buttons.
   - View Kana character sets in a responsive table.
 
-### 3. Statistics View
+#### Font Settings
+- **Route**: `/settings/font`
+- **Purpose**: Configure Kana font used in quiz.
+- **Key Features**:
+  - Toggle between 9 different fonts based on reading difficulty.
+  - View Kana character in font.
+
+### 4. Statistics View
 - **Route**: `/statistics`
 - **Purpose**: Visualize performance statistics for each Kana characters.
 - **Key Features**:
   - Expandable categories (Monographs, Digraphs, Diacritic Monographs, Diacritic Digraphs).
   - Progress bars showing correct and incorrect answers for each Kana character.
   - Color-coded statistics for easy interpretation.
+
+
+### 5. Contact
+#### Contact Information
+- **Route**: `/contact/information`
+- **Purpose**: Provide contact information for the developers.
+- **Key Features**:
+  - Display contact information for the developers and address with map.
+
+#### Contact Form
+- **Route**: `/contact/form`
+- **Purpose**: Allow users to send messages to the developers via email.
+- **Key Features**:
+  - Form for users to fill out with their name, email, subject and message.
+  - Send button to submit the form via email client.
 
 ---
 
