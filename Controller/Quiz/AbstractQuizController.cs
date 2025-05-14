@@ -24,11 +24,25 @@ namespace kanavrt.Controller.Quiz {
 		/// </summary>
 		public bool isError = false;
 		public ControllerError Error;
-
+		/// <summary>
+		/// Number of wrong guesses in current quiz.
+		/// </summary>
 		public int WrongGuesses { get; set; } = 0;
+		/// <summary>
+		/// Number of correct guesses in current quiz.
+		/// </summary>
 		public int CorrectGuesses { get; set; } = 0;
+		/// <summary>
+		/// Model to look up kana characters information.
+		/// </summary>
 		protected KanaModel kanaModel { get; }
+		/// <summary>
+		/// Model to look up kana statistics about correct and wrong guess count.
+		/// </summary>
 		protected StatisticsModel statisticsModel { get; }
+		/// <summary>
+		/// Model to look up kana settings like font and current characters set.
+		/// </summary>
 		protected SettingsModel settingsModel { get; }
 		/// <summary>
 		/// Class to generate random indexes to get syllables.
@@ -56,27 +70,42 @@ namespace kanavrt.Controller.Quiz {
 			InitialMove();
 		}
 
+		/// <summary>
+		/// Initial move thet gets called by the contructor.
+		/// </summary>
 		protected void InitialMove() {
 			if (isError) throw new("Can't call function if controller Error.");
 			InitialMove_();
 		}
-
+		/// <summary>
+		/// Next move that gets called by update after the user succedes/fails at guessing the correct character.
+		/// </summary>
 		protected void NextMove() {
 			if (isError) throw new("Can't call function if controller Error.");
 			NextMove_();
 		}
-
+		/// <summary>
+		/// Updates the necesarry mode variables and calls NextMove_.
+		/// </summary>
+		/// <param name="input">Input string to check and update state with.</param>
 		public void Update(string input) {
 			if (isError) throw new("Can't call function if controller Error.");
 			Update_(input);
 		}
-
+		/// <summary>
+		/// Checks if current latin input is correct.
+		/// </summary>
+		/// <param name="latin">String input to check.</param>
+		/// <returns>true, if latin input is correct, false otherwise</returns>
+		/// 
 		public bool IsCorrect(string latin) {
 			if (isError) throw new("Can't call function if controller Error.");
 
 			return IsCorrect_(latin);
 		}
-
+		/// <summary>
+		/// Resets the quiz to initial state.
+		/// </summary>
 		public void Reset() {
 			if (isError) throw new("Can't call function if controller Error.");
 
@@ -96,7 +125,7 @@ namespace kanavrt.Controller.Quiz {
 		/// <summary>
 		/// Updates the necesarry mode variables and calls NextMove_.
 		/// </summary>
-		/// <param name="input"></param>
+		/// <param name="input">Input string to check and update state with.</param>
 		protected abstract void Update_(string input);
 
 		/// <summary>
@@ -106,7 +135,9 @@ namespace kanavrt.Controller.Quiz {
 		/// <returns>true, if latin input is correct, false otherwise</returns>
 		/// 
 		protected abstract bool IsCorrect_(string latin);
-
+		/// <summary>
+		/// Resets the quiz to initial state.
+		/// </summary>
 		protected abstract void Reset_();
 	}
 }
