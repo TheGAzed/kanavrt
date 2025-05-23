@@ -202,6 +202,6 @@ section {
 
 @media screen and (max-height: 825px) {
     section {
-        height: 60vh;
+        height: 70vh;
     }
 }

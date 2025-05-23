@@ -81,7 +81,7 @@ a.side-link-active {
 
 @media screen and (max-width: 900px) {
     main > nav > ul > li {
-        width: 2.5rem;
+        width: 3rem;
     }
 
         main > nav > ul > li > a > h3 {
@@ -92,7 +92,7 @@ a.side-link-active {
 @media screen and (max-width: 750px) {
     main {
         flex-direction: column;
-        height: calc(100% - 8rem);
+        height: calc(100% - 6rem);
     }
 
         main > nav > ul {
@@ -100,13 +100,13 @@ a.side-link-active {
         }
 
             main > nav > ul > li {
-                height: 4rem;
-                width: 4rem;
+                height: 3rem;
+                width: 3rem;
             }
 
                 main > nav > ul > li > a > img {
-                    width: 1.5rem;
-                    height: 1.5rem;
+                    width: 1rem;
+                    height: 1rem;
                 }
 
         main > nav {
